@@ -149,5 +149,33 @@ describe('s3 plugin', function() {
           assert.match(mockUi.messages[1], /- something bad went wrong/);
         });
     });
+
+    it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {
+      var plugin = subject.createDeployPlugin({
+        name: 's3'
+      });
+
+      context.gzippedFiles = ['app.css'];
+      var assertionCount = 0;
+      context.client = {
+        putObject: function(params, cb) {
+          if (params.Key === 'app.css') {
+            assert.equal(params.ContentEncoding, 'gzip');
+            assertionCount++;
+          } else {
+            assert.isUndefined(params.ContentEncoding);
+            assertionCount++;
+          }
+          cb();
+        }
+      };
+
+      return assert.isFulfilled(plugin.upload.call(plugin, context)).then(function(){
+        assert.equal(assertionCount, 2);
+        done();
+      }).catch(function(reason){
+        done(reason.actual.stack);
+      });
+    });
   });
 });

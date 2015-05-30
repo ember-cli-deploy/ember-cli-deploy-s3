@@ -3,7 +3,6 @@
 
 var Promise   = require('ember-cli/lib/ext/promise');
 var minimatch = require('minimatch');
-var path      = require('path');
 
 var chalk  = require('chalk');
 var blue   = chalk.blue;
@@ -60,6 +59,7 @@ module.exports = {
         var filePattern   = config.filePattern;
         var distDir       = context.distDir;
         var distFiles     = context.distFiles || [];
+        var gzippedFiles  = context.gzippedFiles || []; // e.g. from ember-cli-deploy-gzip
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true }));
 
         var s3 = context.s3Client || new S3({
@@ -69,8 +69,9 @@ module.exports = {
         });
 
         var options = {
-          cwd: context.distDir,
+          cwd: distDir,
           filePaths: filesToUpload,
+          gzippedFilePaths: gzippedFiles,
           prefix: config.prefix,
           bucket: config.bucket
         };
