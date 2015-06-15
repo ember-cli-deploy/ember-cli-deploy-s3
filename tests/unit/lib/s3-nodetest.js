@@ -42,7 +42,7 @@ describe('s3', function() {
           assert.equal(mockUi.messages.length, 2);
 
           var messages = mockUi.messages.reduce(function(previous, current) {
-            if (/- uploaded: app\.[js|css]/.test(current)) {
+            if (/- ✔  js-app\/app\.[js|css]/.test(current)) {
               previous.push(current);
             }
 
