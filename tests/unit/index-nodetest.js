@@ -92,16 +92,7 @@ describe('s3 plugin', function() {
       return assert.isFulfilled(plugin.upload.call(plugin, context))
         .then(function() {
           assert.equal(mockUi.messages.length, 4);
-
-          var messages = mockUi.messages.reduce(function(previous, current) {
-            if (/- uploading 2 files to `cccc`/.test(current)) {
-              previous.push(current);
-            }
-
-            return previous;
-          }, []);
-
-          assert.equal(messages.length, 1);
+          assert.match(mockUi.messages[0], /preparing to upload to S3 bucket `cccc`/);
         });
     });
 

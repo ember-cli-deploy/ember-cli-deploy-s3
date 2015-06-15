@@ -111,5 +111,79 @@ describe('s3', function() {
           });
       });
     });
+
+    describe('with a manifestPath specified', function () {
+      it('uploads all files when manifest is missing from server', function (done) {
+        var subject = new S3({
+          ui: mockUi,
+          client: {
+            putObject: function(params, cb) {
+              cb();
+            },
+            getObject: function(params, cb){
+              cb(new Error("File not found"));
+            }
+          }
+        });
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          manifestPath: 'manifest.txt'
+        };
+
+        var promise = subject.upload(options);
+
+        return assert.isFulfilled(promise)
+          .then(function() {
+            assert.equal(mockUi.messages.length, 5);
+            assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
+            assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
+            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
+            assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css/);
+            assert.match(mockUi.messages[4], /- ✔  js-app\/manifest\.txt/);
+            done();
+          }).catch(function(reason){
+            done(reason);
+          });
+      });
+
+      it('only uploads missing files when manifest is present on server', function (done) {
+        var subject = new S3({
+          ui: mockUi,
+          client: {
+            putObject: function(params, cb) {
+              cb();
+            },
+            getObject: function(params, cb){
+              cb(undefined, {
+                Body: "app.js"
+              });
+            }
+          }
+        });
+
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          manifestPath: 'manifest.txt'
+        };
+
+        var promise = subject.upload(options);
+
+        return assert.isFulfilled(promise)
+          .then(function() {
+            assert.equal(mockUi.messages.length, 4);
+            assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
+            assert.match(mockUi.messages[1], /- Manifest found. Differential deploy will be applied\./);
+            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.css/);
+            assert.match(mockUi.messages[3], /- ✔  js-app\/manifest\.txt/);
+            done();
+          }).catch(function(reason){
+            done(reason);
+          });
+      });
+    });
   });
 });

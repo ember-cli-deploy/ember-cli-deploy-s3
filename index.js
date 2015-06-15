@@ -17,14 +17,14 @@ module.exports = {
   createDeployPlugin: function(options) {
     function _beginMessage(ui, filesToUpload, bucket) {
       ui.write(blue('|    '));
-      ui.writeLine(blue('- uploading ' + filesToUpload.length + ' files to `' + bucket + '`'));
+      ui.writeLine(blue('- preparing to upload to S3 bucket `' + bucket + '`'));
 
       return Promise.resolve();
     }
 
-    function _successMessage(ui, filesToUpload) {
+    function _successMessage(ui, filesUploaded) {
       ui.write(blue('|    '));
-      ui.writeLine(blue('- uploaded ' + filesToUpload.length + ' files ok'));
+      ui.writeLine(blue('- uploaded ' + filesUploaded.length + ' files ok'));
 
       return Promise.resolve();
     }
@@ -73,12 +73,13 @@ module.exports = {
           filePaths: filesToUpload,
           gzippedFilePaths: gzippedFiles,
           prefix: config.prefix,
-          bucket: config.bucket
+          bucket: config.bucket,
+          manifestPath: context.manifestPath
         };
 
         return _beginMessage(ui, filesToUpload, config.bucket)
           .then(s3.upload.bind(s3, options))
-          .then(_successMessage.bind(this, ui, filesToUpload))
+          .then(_successMessage.bind(this, ui))
           .catch(_errorMessage.bind(this, ui));
       }
     };
