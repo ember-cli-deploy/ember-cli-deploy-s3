@@ -230,7 +230,6 @@ describe('s3 plugin', function() {
       context.uploadClient = null;
       context.s3Client = {
         putObject: function(params, cb) {
-          debugger;
           if (params.Key === 'app.css') {
             assert.equal(params.ContentEncoding, 'gzip');
             assertionCount++;

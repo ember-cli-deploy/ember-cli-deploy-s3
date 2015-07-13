@@ -38,7 +38,6 @@ module.exports = {
       requiredConfig: ['accessKeyId', 'secretAccessKey', 'bucket'],
 
       upload: function(context) {
-        debugger;
         var self         = this;
 
         var filePattern   = this.readConfig('filePattern');
