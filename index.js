@@ -3,85 +3,84 @@
 
 var Promise   = require('ember-cli/lib/ext/promise');
 var minimatch = require('minimatch');
-
-var chalk  = require('chalk');
-var blue   = chalk.blue;
-var red    = chalk.red;
-
-var validateConfig = require('./lib/utilities/validate-config');
+var DeployPluginBase = require('ember-cli-deploy-plugin');
 var S3             = require('./lib/s3');
 
 module.exports = {
   name: 'ember-cli-deploy-s3',
 
   createDeployPlugin: function(options) {
-    function _beginMessage(ui, filesToUpload, bucket) {
-      ui.write(blue('|    '));
-      ui.writeLine(blue('- preparing to upload to S3 bucket `' + bucket + '`'));
-
-      return Promise.resolve();
-    }
-
-    function _successMessage(ui, filesUploaded) {
-      ui.write(blue('|    '));
-      ui.writeLine(blue('- uploaded ' + filesUploaded.length + ' files ok'));
-
-      return Promise.resolve();
-    }
-
-    function _errorMessage(ui, error) {
-      ui.write(blue('|    '));
-      ui.writeLine(red('- ' + error));
-
-      return Promise.reject(error);
-    }
-
-    return {
+    var DeployPlugin = DeployPluginBase.extend({
       name: options.name,
-
-      willDeploy: function(context) {
-        var deployment = context.deployment;
-        var ui         = deployment.ui;
-        var config     = deployment.config[this.name] = deployment.config[this.name] || {};
-
-        return validateConfig(ui, config)
-          .then(function() {
-            ui.write(blue('|    '));
-            ui.writeLine(blue('- config ok'));
-          });
+      defaultConfig: {
+        region: 'us-east-1',
+        filePattern: '**/*.{js,css,png,gif,jpg,map,xml,txt,svg,eot,ttf,woff,woff2}',
+        prefix: '',
+        distDir: function(context) {
+          return context.distDir;
+        },
+        distFiles: function(context) {
+          return context.distFiles || [];
+        },
+        gzippedFiles: function(context) {
+          return context.gzippedFiles || []; // e.g. from ember-cli-deploy-gzip
+        },
+        manifestPath: function(context) {
+          return context.manifestPath; // e.g. from ember-cli-deploy-manifest
+        },
+        uploadClient: function(context) {
+          return context.uploadClient; // if you want to provide your own upload client to be used instead of one from this plugin
+        },
+        s3Client: function(context) {
+          return context.s3Client; // if you want to provide your own S3 client to be used instead of one from aws-sdk
+        }
       },
+      requiredConfig: ['accessKeyId', 'secretAccessKey', 'bucket'],
 
       upload: function(context) {
-        var deployment = context.deployment;
-        var ui         = deployment.ui;
-        var config     = deployment.config[this.name];
+        debugger;
+        var self         = this;
 
-        var filePattern   = config.filePattern;
-        var distDir       = context.distDir;
-        var distFiles     = context.distFiles || [];
-        var gzippedFiles  = context.gzippedFiles || []; // e.g. from ember-cli-deploy-gzip
+        var filePattern   = this.readConfig('filePattern');
+        var distDir       = this.readConfig('distDir');
+        var distFiles     = this.readConfig('distFiles');
+        var gzippedFiles  = this.readConfig('gzippedFiles');
+        var bucket        = this.readConfig('bucket');
+        var prefix        = this.readConfig('prefix');
+        var manifestPath  = this.readConfig('manifestPath');
+
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true }));
 
-        var s3 = context.s3Client || new S3({
-          ui: ui,
-          config: config,
-          client: context.client
+        var s3 = this.readConfig('uploadClient') || new S3({
+          plugin: this
         });
 
         var options = {
           cwd: distDir,
           filePaths: filesToUpload,
           gzippedFilePaths: gzippedFiles,
-          prefix: config.prefix,
-          bucket: config.bucket,
-          manifestPath: context.manifestPath
+          prefix: prefix,
+          bucket: bucket,
+          manifestPath: manifestPath
         };
 
-        return _beginMessage(ui, filesToUpload, config.bucket)
-          .then(s3.upload.bind(s3, options))
-          .then(_successMessage.bind(this, ui))
-          .catch(_errorMessage.bind(this, ui));
+        this.log('preparing to upload to S3 bucket `' + bucket + '`');
+
+        return s3.upload(options)
+        .then(function(filesUploaded){
+          self.log('uploaded ' + filesUploaded.length + ' files ok');
+          return { filesUploaded: filesUploaded };
+        })
+        .catch(this._errorMessage.bind(this));
+      },
+      _errorMessage: function(error) {
+        this.log(error, { color: 'red' });
+        if (error) {
+          this.log(error.stack, { color: 'red' });
+        }
+        return Promise.reject(error);
       }
-    };
+    });
+    return new DeployPlugin();
   }
 };

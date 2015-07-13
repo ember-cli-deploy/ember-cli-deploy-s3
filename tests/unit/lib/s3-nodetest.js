@@ -1,14 +1,21 @@
 var assert = require('ember-cli/tests/helpers/assert');
 
 describe('s3', function() {
-  var S3;
-  var mockUi;
+  var S3, mockUi, s3Client, plugin, subject;
 
   before(function() {
     S3 = require('../../../lib/s3');
   });
 
   beforeEach(function() {
+    s3Client = {
+      putObject: function(params, cb) {
+        cb();
+      },
+      getObject: function(params, cb){
+        cb(new Error("File not found"));
+      }
+    };
     mockUi = {
       messages: [],
       write: function() {},
@@ -16,19 +23,25 @@ describe('s3', function() {
         this.messages.push(message);
       }
     };
+    plugin = {
+      ui: mockUi,
+      readConfig: function(propertyName) {
+        if (propertyName === 's3Client') {
+          return s3Client;
+        }
+      },
+      log: function(message, opts) {
+        this.ui.write('|    ');
+        this.ui.writeLine('- ' + message);
+      }
+    };
+    subject = new S3({
+      plugin: plugin
+    });
   });
 
   describe('#upload', function() {
     it('resolves if all uploads succeed', function() {
-      var subject = new S3({
-        ui: mockUi,
-        client: {
-          putObject: function(params, cb) {
-            cb();
-          }
-        }
-      });
-
       var options = {
         filePaths: ['app.js', 'app.css'],
         cwd: process.cwd() + '/tests/fixtures/dist',
@@ -54,14 +67,9 @@ describe('s3', function() {
     });
 
     it('rejects if an upload fails', function() {
-      var subject = new S3({
-        ui: mockUi,
-        client: {
-          putObject: function(params, cb) {
-            cb('error uploading');
-          }
-        }
-      });
+      s3Client.putObject = function(params, cb) {
+        cb('error uploading');
+      };
 
       var options = {
         filePaths: ['app.js', 'app.css'],
@@ -79,16 +87,10 @@ describe('s3', function() {
     describe('sending the object to s3', function() {
       it('sends the correct params', function() {
         var s3Params;
-
-        var subject = new S3({
-          ui: mockUi,
-          client: {
-            putObject: function(params, cb) {
-              s3Params = params;
-              cb();
-            }
-          }
-        });
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
 
         var options = {
           filePaths: ['app.js'],
@@ -114,17 +116,6 @@ describe('s3', function() {
 
     describe('with a manifestPath specified', function () {
       it('uploads all files when manifest is missing from server', function (done) {
-        var subject = new S3({
-          ui: mockUi,
-          client: {
-            putObject: function(params, cb) {
-              cb();
-            },
-            getObject: function(params, cb){
-              cb(new Error("File not found"));
-            }
-          }
-        });
         var options = {
           filePaths: ['app.js', 'app.css'],
           cwd: process.cwd() + '/tests/fixtures/dist',
@@ -149,19 +140,11 @@ describe('s3', function() {
       });
 
       it('only uploads missing files when manifest is present on server', function (done) {
-        var subject = new S3({
-          ui: mockUi,
-          client: {
-            putObject: function(params, cb) {
-              cb();
-            },
-            getObject: function(params, cb){
-              cb(undefined, {
-                Body: "app.js"
-              });
-            }
-          }
-        });
+        s3Client.getObject = function(params, cb){
+          cb(undefined, {
+            Body: "app.js"
+          });
+        };
 
         var options = {
           filePaths: ['app.js', 'app.css'],
