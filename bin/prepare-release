@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm -rf node_modules && \
+rm -rf ./ember-cli-deploy-s3*.tgz && \
+npm cache clear && \
+npm i --no-optional && \
+npm link --no-optional && \
+npm pack

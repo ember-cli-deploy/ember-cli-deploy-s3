@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-s3",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "description": "An ember-cli-deploy plugin to upload to s3",
   "directories": {
     "doc": "doc",
@@ -34,8 +34,10 @@
     "ember-disable-prototype-extensions": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.4",
+    "github": "^0.2.4",
     "glob": "^5.0.5",
-    "mocha": "^2.2.4"
+    "mocha": "^2.2.4",
+    "multiline": "^1.0.2"
   },
   "keywords": [
     "ember-addon",
