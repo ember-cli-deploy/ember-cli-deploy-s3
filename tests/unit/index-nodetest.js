@@ -134,7 +134,7 @@ describe('s3 plugin', function() {
         plugin.configure(context);
       });
       var messages = mockUi.messages.reduce(function(previous, current) {
-        if (/- Missing config:\s.*/.test(current)) {
+        if (/- Missing required config:\s.*/.test(current)) {
           previous.push(current);
         }
 
