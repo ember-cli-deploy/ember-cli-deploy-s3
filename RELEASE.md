@@ -16,7 +16,7 @@ The following steps should navigate you through the release process to ensure as
 8. `git push upstream master`
 9. `git tag "vx.y.z"`
 10. `git push upstream vx.y.z`
-11. `npm publish ./ember-cli-deploy-revision-key-<version>.tgz`
+11. `npm publish ./ember-cli-deploy-s3-<version>.tgz`
 
 ### Create a github release
 
