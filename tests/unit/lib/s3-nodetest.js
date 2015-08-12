@@ -107,6 +107,7 @@ describe('s3', function() {
             assert.equal(s3Params.ACL, 'public-read');
             assert.equal(s3Params.Body.toString(), 'body: {}\n');
             assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
+            assert.equal(s3Params.ContentMD5, 'P340ehQNjovWIhAe89wzPw==');
             assert.equal(s3Params.Key, 'js-app/app.css');
             assert.equal(s3Params.CacheControl, 'max-age=63072000, public');
             assert.deepEqual(s3Params.Expires, new Date('2030'));
