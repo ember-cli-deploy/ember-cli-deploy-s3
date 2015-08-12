@@ -93,7 +93,7 @@ describe('s3', function() {
         };
 
         var options = {
-          filePaths: ['app.js'],
+          filePaths: ['app.css'],
           cwd: process.cwd() + '/tests/fixtures/dist',
           prefix: 'js-app',
           bucket: 'some-bucket'
@@ -105,9 +105,9 @@ describe('s3', function() {
           .then(function() {
             assert.equal(s3Params.Bucket, 'some-bucket');
             assert.equal(s3Params.ACL, 'public-read');
-            assert.equal(s3Params.Body.toString(), 'some content here\n');
-            assert.equal(s3Params.ContentType, 'application/javascript');
-            assert.equal(s3Params.Key, 'js-app/app.js');
+            assert.equal(s3Params.Body.toString(), 'body: {}\n');
+            assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
+            assert.equal(s3Params.Key, 'js-app/app.css');
             assert.equal(s3Params.CacheControl, 'max-age=63072000, public');
             assert.deepEqual(s3Params.Expires, new Date('2030'));
           });
