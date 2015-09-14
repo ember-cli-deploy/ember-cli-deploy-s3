@@ -1,5 +1,11 @@
 #### Community Contributions
 
+- [#11](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/11) Add content encoding to ContentType for text files [@achambers](https://github.com/achambers)
+
+Thank you to all who took the time to contribute!
+
+#### Community Contributions
+
 - [#1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/1) Upload to s3 [@achambers](https://github.com/achambers)
 - [#2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/2) Indicate to ember-cli that this addon should be "before" redis [@lukemelia](https://github.com/lukemelia)
 - [#3](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/3) Support for working with a gzip plugin. [@lukemelia](https://github.com/lukemelia)
