@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "node tests/runner.js"
   },
-  "repository": "https://github.com/zapnito/ember-cli-deploy-s3",
+  "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy-s3",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "Aaron Chambers and Jon Beer",
+  "author": "Aaron Chambers and the ember-cli-deploy team",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
