@@ -20,7 +20,7 @@ var github         = new GitHubApi({version: '3.0.0'});
 var compareCommits = Promise.denodeify(github.repos.compareCommits);
 var currentVersion = 'v' + require('../package').version;
 
-var user = 'zapnito';
+var user = 'ember-cli-deploy';
 var repo = 'ember-cli-deploy-s3';
 
 compareCommits({
