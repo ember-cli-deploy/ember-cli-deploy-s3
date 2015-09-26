@@ -14,7 +14,7 @@ module.exports = {
       name: options.name,
       defaultConfig: {
         region: 'us-east-1',
-        filePattern: '**/*.{js,css,png,gif,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
+        filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
         prefix: '',
         distDir: function(context) {
           return context.distDir;
