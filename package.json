@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-s3",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0",
   "description": "An ember-cli-deploy plugin to upload to s3",
   "directories": {
     "doc": "doc",
