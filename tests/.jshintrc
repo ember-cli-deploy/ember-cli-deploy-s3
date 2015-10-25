@@ -23,8 +23,9 @@
     "currentPath",
     "currentRouteName"
   ],
-  "node": false,
+  "node": true,
   "browser": false,
+  "mocha": true,
   "boss": true,
   "curly": false,
   "debug": false,

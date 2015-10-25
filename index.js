@@ -15,6 +15,7 @@ module.exports = {
       defaultConfig: {
         filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
         prefix: '',
+        acl: 'public-read',
         distDir: function(context) {
           return context.distDir;
         },
@@ -44,6 +45,7 @@ module.exports = {
         var distFiles     = this.readConfig('distFiles');
         var gzippedFiles  = this.readConfig('gzippedFiles');
         var bucket        = this.readConfig('bucket');
+        var acl           = this.readConfig('acl');
         var prefix        = this.readConfig('prefix');
         var manifestPath  = this.readConfig('manifestPath');
 
@@ -59,6 +61,7 @@ module.exports = {
           gzippedFilePaths: gzippedFiles,
           prefix: prefix,
           bucket: bucket,
+          acl: acl,
           manifestPath: manifestPath
         };
 
