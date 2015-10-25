@@ -63,11 +63,11 @@ module.exports = {
           manifestPath: manifestPath
         };
 
-        this.log('preparing to upload to S3 bucket `' + bucket + '`');
+        this.log('preparing to upload to S3 bucket `' + bucket + '`', { verbose: true });
 
         return s3.upload(options)
         .then(function(filesUploaded){
-          self.log('uploaded ' + filesUploaded.length + ' files ok');
+          self.log('uploaded ' + filesUploaded.length + ' files ok', { verbose: true });
           return { filesUploaded: filesUploaded };
         })
         .catch(this._errorMessage.bind(this));

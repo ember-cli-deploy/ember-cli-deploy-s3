@@ -14,6 +14,7 @@ describe('s3 plugin', function() {
 
   beforeEach(function() {
     mockUi = {
+      verbose: true,
       messages: [],
       write: function() {},
       writeLine: function(message) {
