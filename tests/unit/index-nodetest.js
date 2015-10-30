@@ -101,8 +101,8 @@ describe('s3 plugin', function() {
         plugin.configure(context);
       });
     });
+
     it('warns about missing optional config', function() {
-      delete context.config.s3.region;
       delete context.config.s3.filePattern;
       delete context.config.s3.prefix;
 
@@ -119,38 +119,99 @@ describe('s3 plugin', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 3);
+      assert.equal(messages.length, 2);
     });
 
-    it('warns about missing required config', function() {
-      delete context.config.s3.accessKeyId;
-      delete context.config.s3.secretAccessKey;
-      delete context.config.s3.bucket;
+    describe('reaquired config', function() {
+      it('warns about missing accessKeyId', function() {
+        delete context.config.s3.accessKeyId;
 
-      var plugin = subject.createDeployPlugin({
-        name: 's3'
+        var plugin = subject.createDeployPlugin({
+          name: 's3'
+        });
+        plugin.beforeHook(context);
+        assert.throws(function(error){
+          plugin.configure(context);
+        });
+        var messages = mockUi.messages.reduce(function(previous, current) {
+          if (/- Missing required config: `accessKeyId`/.test(current)) {
+            previous.push(current);
+          }
+
+          return previous;
+        }, []);
+
+        assert.equal(messages.length, 1);
       });
-      plugin.beforeHook(context);
-      assert.throws(function(error){
-        plugin.configure(context);
+
+      it('warns about missing secretAccessKey', function() {
+        delete context.config.s3.secretAccessKey;
+
+        var plugin = subject.createDeployPlugin({
+          name: 's3'
+        });
+        plugin.beforeHook(context);
+        assert.throws(function(error){
+          plugin.configure(context);
+        });
+        var messages = mockUi.messages.reduce(function(previous, current) {
+          if (/- Missing required config: `secretAccessKey`/.test(current)) {
+            previous.push(current);
+          }
+
+          return previous;
+        }, []);
+
+        assert.equal(messages.length, 1);
       });
-      var messages = mockUi.messages.reduce(function(previous, current) {
-        if (/- Missing required config:\s.*/.test(current)) {
-          previous.push(current);
-        }
 
-        return previous;
-      }, []);
+      it('warns about missing bucket', function() {
+        delete context.config.s3.bucket;
 
-      assert.equal(messages.length, 1); // doesn't log all failures, just first one
+        var plugin = subject.createDeployPlugin({
+          name: 's3'
+        });
+        plugin.beforeHook(context);
+        assert.throws(function(error){
+          plugin.configure(context);
+        });
+        var messages = mockUi.messages.reduce(function(previous, current) {
+          if (/- Missing required config: `bucket`/.test(current)) {
+            previous.push(current);
+          }
+
+          return previous;
+        }, []);
+
+        assert.equal(messages.length, 1);
+      });
+
+      it('warns about missing region', function() {
+        delete context.config.s3.region;
+
+        var plugin = subject.createDeployPlugin({
+          name: 's3'
+        });
+        plugin.beforeHook(context);
+        assert.throws(function(error){
+          plugin.configure(context);
+        });
+        var messages = mockUi.messages.reduce(function(previous, current) {
+          if (/- Missing required config: `region`/.test(current)) {
+            previous.push(current);
+          }
+
+          return previous;
+        }, []);
+
+        assert.equal(messages.length, 1);
+      });
     });
 
     it('adds default config to the config object', function() {
-      delete context.config.s3.region;
       delete context.config.s3.filePattern;
       delete context.config.s3.prefix;
 
-      assert.isUndefined(context.config.s3.region);
       assert.isUndefined(context.config.s3.filePattern);
       assert.isUndefined(context.config.s3.prefix);
 
@@ -160,7 +221,6 @@ describe('s3 plugin', function() {
       plugin.beforeHook(context);
       plugin.configure(context);
 
-      assert.isDefined(context.config.s3.region);
       assert.isDefined(context.config.s3.filePattern);
       assert.isDefined(context.config.s3.prefix);
     });
