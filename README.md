@@ -2,9 +2,10 @@
 
 > An ember-cli-deploy plugin to upload files to S3
 
-<hr/>
-**WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
-<hr/>
+<iframe
+  width="233" height="24" style="border:0px"
+  src="https://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/plugins/ember-cli-deploy-s3.html">
+</iframe>
 
 This plugin uploads one or more files to an Amazon S3 bucket. It could be used to upload the assets (js, css, images etc) or indeed the application's index.html.
 
