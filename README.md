@@ -83,7 +83,7 @@ The AWS bucket that the files will be uploaded to.
 
 The region the AWS `bucket` is located in.
 
-*Default:* `us-east-1`
+*Default:* `undefined`
 
 ### prefix
 

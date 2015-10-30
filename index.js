@@ -13,7 +13,6 @@ module.exports = {
     var DeployPlugin = DeployPluginBase.extend({
       name: options.name,
       defaultConfig: {
-        region: 'us-east-1',
         filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
         prefix: '',
         distDir: function(context) {
@@ -35,7 +34,7 @@ module.exports = {
           return context.s3Client; // if you want to provide your own S3 client to be used instead of one from aws-sdk
         }
       },
-      requiredConfig: ['accessKeyId', 'secretAccessKey', 'bucket'],
+      requiredConfig: ['accessKeyId', 'secretAccessKey', 'bucket', 'region'],
 
       upload: function(context) {
         var self         = this;
