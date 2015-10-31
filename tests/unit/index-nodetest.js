@@ -122,7 +122,7 @@ describe('s3 plugin', function() {
       assert.equal(messages.length, 2);
     });
 
-    describe('reaquired config', function() {
+    describe('required config', function() {
       it('warns about missing accessKeyId', function() {
         delete context.config.s3.accessKeyId;
 
