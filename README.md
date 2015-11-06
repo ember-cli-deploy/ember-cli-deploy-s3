@@ -105,7 +105,7 @@ The root directory where the files matching `filePattern` will be searched for. 
 
 The list of built project files. This option should be relative to `distDir` and should include the files that match `filePattern`. By default, this option will use the `distFiles` property of the deployment context, provided by [ember-cli-deploy-build][2].
 
-*Default:* `context.distDir`
+*Default:* `context.distFiles`
 
 ### gzippedFiles
 
