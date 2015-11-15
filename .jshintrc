@@ -5,6 +5,7 @@
     "-Promise"
   ],
   "browser": true,
+  "node": true,
   "boss": true,
   "curly": true,
   "debug": false,

@@ -83,6 +83,12 @@ The region the AWS `bucket` is located in.
 
 *Default:* `undefined`
 
+### acl
+
+The ACL to apply to the objects.
+
+*Default:* `public-read`
+
 ### prefix
 
 A directory within the `bucket` that the files should be uploaded in to.

@@ -38,6 +38,7 @@ describe('s3 plugin', function() {
           bucket: 'cccc',
           region: 'dddd',
           filePattern: '*.{css,js}',
+          acl: 'authenticated-read',
           prefix: '',
           distDir: function(context) {
             return context.distDir;

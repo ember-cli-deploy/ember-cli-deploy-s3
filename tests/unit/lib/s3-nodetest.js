@@ -96,6 +96,7 @@ describe('s3', function() {
           filePaths: ['app.css'],
           cwd: process.cwd() + '/tests/fixtures/dist',
           prefix: 'js-app',
+          acl: 'public-read',
           bucket: 'some-bucket'
         };
 
