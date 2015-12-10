@@ -63,15 +63,16 @@ For detailed information on how configuration of plugins works, please refer to 
 **WARNING: Don't share a configuration object between [ember-cli-deploy-s3-index](https://github.com/ember-cli-deploy/ember-cli-deploy-s3-index) and this plugin. The way these two plugins read their configuration has sideeffects which will unfortunately break your deploy if you share one configuration object between the two** (we are already working on a fix)
 <hr/>
 
-### accessKeyId (`required`)
+### accessKeyId
 
-The AWS access key for the user that has the ability to upload to the `bucket`.
+The AWS access key for the user that has the ability to upload to the `bucket`. If this is left undefined, 
+the normal [AWS SDK credential resolution](5) will take place.
 
 *Default:* `undefined`
 
-### secretAccessKey (`required`)
+### secretAccessKey
 
-The AWS secret for the user that has the ability to upload to the `bucket`.
+The AWS secret for the user that has the ability to upload to the `bucket`. This must be defined when `accessKeyId` is defined.
 
 *Default:* `undefined`
 
@@ -166,3 +167,4 @@ The following properties are expected to be present on the deployment `context` 
 [2]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"
 [3]: https://github.com/lukemelia/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
 [4]: https://github.com/lukemelia/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
+[5]: https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials "Setting AWS Credentials"
