@@ -12,6 +12,7 @@ A plugin is an addon that can be executed as a part of the ember-cli-deploy pipe
 
 For more information on what plugins are and how they work, please refer to the [Plugin Documentation][1].
 
+
 ## Quick Start
 
 To get up and running quickly, do the following:
@@ -34,6 +35,31 @@ ENV.s3 = {
   region: '<the-region-your-bucket-is-in>'
 }
 ```
+
+- Ensure you have the minimum required permissions configured for the above user (accessKeyId). A bare minimum policy should have the following permissions:
+
+```
+{
+    "Statement": [
+        {
+            "Sid": "Stmt1EmberCLIS3DeployPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectACL"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<your-s3-bucket-name>/*"
+            ]
+        }
+    ]
+}
+
+
+```
+Replace <your-s3-bucket-name> with the name of the actual bucket you are deploying to. Also, remember that "PutObject" permission will effectively overwrite any existing files with the same name unless you use a fingerprinting or a manifest plugin.
+
 
 - Run the pipeline
 
