@@ -166,7 +166,6 @@ Ensure you have the minimum required permissions configured for the user (access
     ]
 }
 
-
 ```
 Replace <your-s3-bucket-name> with the name of the actual bucket you are deploying to. Also, remember that "PutObject" permission will effectively overwrite any existing files with the same name unless you use a fingerprinting or a manifest plugin.
 
