@@ -158,6 +158,33 @@ The following properties are expected to be present on the deployment `context` 
 - `gzippedFiles` (provided by [ember-cli-deploy-gzip][3])
 - `manifestPath` (provided by [ember-cli-deploy-manifest][4])
 
+## Minimum S3 Permissions
+
+Ensure you have the minimum required permissions configured for the user (accessKeyId). A bare minimum policy should have the following permissions:
+
+```
+{
+    "Statement": [
+        {
+            "Sid": "Stmt1EmberCLIS3DeployPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectACL"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<your-s3-bucket-name>/*"
+            ]
+        }
+    ]
+}
+
+```
+Replace <your-s3-bucket-name> with the name of the actual bucket you are deploying to. Also, remember that "PutObject" permission will effectively overwrite any existing files with the same name unless you use a fingerprinting or a manifest plugin.
+
+
+
 ## Running Tests
 
 - `npm test`
