@@ -35,7 +35,7 @@ module.exports = {
           return context.s3Client; // if you want to provide your own S3 client to be used instead of one from aws-sdk
         }
       },
-      requiredConfig: ['accessKeyId', 'secretAccessKey', 'bucket', 'region'],
+      requiredConfig: ['bucket', 'region'],
 
       upload: function(context) {
         var self         = this;

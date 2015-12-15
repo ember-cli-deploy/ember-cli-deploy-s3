@@ -124,48 +124,6 @@ describe('s3 plugin', function() {
     });
 
     describe('required config', function() {
-      it('warns about missing accessKeyId', function() {
-        delete context.config.s3.accessKeyId;
-
-        var plugin = subject.createDeployPlugin({
-          name: 's3'
-        });
-        plugin.beforeHook(context);
-        assert.throws(function(error){
-          plugin.configure(context);
-        });
-        var messages = mockUi.messages.reduce(function(previous, current) {
-          if (/- Missing required config: `accessKeyId`/.test(current)) {
-            previous.push(current);
-          }
-
-          return previous;
-        }, []);
-
-        assert.equal(messages.length, 1);
-      });
-
-      it('warns about missing secretAccessKey', function() {
-        delete context.config.s3.secretAccessKey;
-
-        var plugin = subject.createDeployPlugin({
-          name: 's3'
-        });
-        plugin.beforeHook(context);
-        assert.throws(function(error){
-          plugin.configure(context);
-        });
-        var messages = mockUi.messages.reduce(function(previous, current) {
-          if (/- Missing required config: `secretAccessKey`/.test(current)) {
-            previous.push(current);
-          }
-
-          return previous;
-        }, []);
-
-        assert.equal(messages.length, 1);
-      });
-
       it('warns about missing bucket', function() {
         delete context.config.s3.bucket;
 
