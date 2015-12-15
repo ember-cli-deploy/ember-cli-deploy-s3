@@ -159,7 +159,9 @@ The following properties are expected to be present on the deployment `context` 
 - `gzippedFiles` (provided by [ember-cli-deploy-gzip][3])
 - `manifestPath` (provided by [ember-cli-deploy-manifest][4])
 
-## Minimum S3 Permissions
+## Configuring Amazon S3
+
+### Minimum S3 Permissions
 
 Ensure you have the minimum required permissions configured for the user (accessKeyId). A bare minimum policy should have the following permissions:
 
@@ -184,6 +186,25 @@ Ensure you have the minimum required permissions configured for the user (access
 ```
 Replace <your-s3-bucket-name> with the name of the actual bucket you are deploying to. Also, remember that "PutObject" permission will effectively overwrite any existing files with the same name unless you use a fingerprinting or a manifest plugin.
 
+### Sample CORS configuration
+
+To properly serve certain assets (i.e. webfonts) a basic CORS configuration is needed
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <CORSRule>
+    <AllowedOrigin>http://www.your-site.com</AllowedOrigin>
+    <AllowedOrigin>https://www.your-site.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>HEAD</AllowedMethod>
+  </CORSRule>
+</CORSConfiguration>
+```
+
+Replace **http://www.your-site.com** with your domain.
+
+Some more info: [Amazon CORS guide][6], [Stackoverflow][7]
 
 
 ## Running Tests
@@ -195,3 +216,5 @@ Replace <your-s3-bucket-name> with the name of the actual bucket you are deployi
 [3]: https://github.com/lukemelia/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
 [4]: https://github.com/lukemelia/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
 [5]: https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials "Setting AWS Credentials"
+[6]: http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html "Amazon CORS guide"
+[7]: http://stackoverflow.com/questions/12229844/amazon-s3-cors-cross-origin-resource-sharing-and-firefox-cross-domain-font-loa?answertab=votes#tab-top "Stackoverflow"
