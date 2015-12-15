@@ -1,3 +1,15 @@
+### v0.2.0
+
+#### Community Contributions
+
+- [#20](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/20) Add support for ACL on objects [@flecno](https://github.com/flecno)
+- [#24](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/24) Make region a required property [@achambers](https://github.com/achambers)
+- [#21](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/21) don't use path.join for urls [@flecno](https://github.com/flecno)
+- [#31](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/31) Warn about configuration sharing [@ember-cli-deploy](https://github.com/ember-cli-deploy)
+- [#39](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/39) Remove required keys, to support IAM roles [@kkumler/feature](https://github.com/kkumler/feature)
+
+### v0.1.0
+
 #### Community Contributions
 
 - [#11](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/11) Add content encoding to ContentType for text files [@achambers](https://github.com/achambers)
