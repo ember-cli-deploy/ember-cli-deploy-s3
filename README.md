@@ -66,7 +66,7 @@ For detailed information on how configuration of plugins works, please refer to 
 ### accessKeyId
 
 The AWS access key for the user that has the ability to upload to the `bucket`. If this is left undefined, 
-the normal [AWS SDK credential resolution](5) will take place.
+the normal [AWS SDK credential resolution][5] will take place.
 
 *Default:* `undefined`
 
