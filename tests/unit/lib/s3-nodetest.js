@@ -169,5 +169,30 @@ describe('s3', function() {
           });
       });
     });
+
+    describe('with gzippedFilePaths specified', function () {
+      it('uploads all gzipped files that are not included in the filePaths array', function (done) {
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          gzippedFilePaths: ['app.js.gz', 'app.css.gz'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+        };
+
+        var promise = subject.upload(options);
+
+        return assert.isFulfilled(promise)
+          .then(function() {
+            assert.equal(mockUi.messages.length, 4);
+            assert.match(mockUi.messages[0], /- ✔  js-app\/app\.js/);
+            assert.match(mockUi.messages[1], /- ✔  js-app\/app\.css/);
+            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js\.gz/);
+            assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css\.gz/);
+            done();
+          }).catch(function(reason){
+            done(reason);
+          });
+      });
+    });
   });
 });
