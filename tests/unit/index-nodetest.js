@@ -240,17 +240,17 @@ describe('s3 plugin', function() {
         });
     });
 
-    it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {
+    it('sets the appropriate header if the file is included in gzippedFiles list', function(done) {
       var plugin = subject.createDeployPlugin({
         name: 's3'
       });
 
-      context.gzippedFiles = ['app.css'];
+      context.gzippedFiles = ['app.css', 'app.js.gz'];
       var assertionCount = 0;
       context.uploadClient = null;
       context.s3Client = {
         putObject: function(params, cb) {
-          if (params.Key === 'app.css') {
+          if (params.Key === 'app.css' || params.Key === 'app.js.gz') {
             assert.equal(params.ContentEncoding, 'gzip');
             assertionCount++;
           } else {
@@ -266,7 +266,7 @@ describe('s3 plugin', function() {
 
       plugin.beforeHook(context);
       return assert.isFulfilled(plugin.upload(context)).then(function(){
-        assert.equal(assertionCount, 2);
+        assert.equal(assertionCount, 3);
         done();
       }).catch(function(reason){
         done(reason.actual.stack);
