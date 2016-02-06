@@ -1,3 +1,13 @@
+# Change Log
+
+## [0.2.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.2.1) (2016-02-06)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.0...0.2.1)
+
+#### Community Contributions
+
+- update ember-cli-deploy-plugin [\#45](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/45) ([ghedamat](https://github.com/ghedamat))
+- Fix AWS Credential Resolution link in README [\#43](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/43) ([reidab](https://github.com/reidab))
+
 ### v0.2.0
 
 #### Community Contributions
