@@ -110,6 +110,35 @@ describe('s3', function() {
             assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
             assert.equal(s3Params.Key, 'js-app/app.css');
             assert.equal(s3Params.CacheControl, 'max-age=63072000, public');
+            assert.isUndefined(s3Params.ContentEncoding);
+            assert.deepEqual(s3Params.Expires, new Date('2030'));
+          });
+      });
+
+      it('sends the correct content type params for gzipped files with .gz extension', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.css', 'app.css.gz'],
+          gzippedFilePaths: ['app.css.gz'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          acl: 'public-read',
+          bucket: 'some-bucket'
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function() {
+            assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
+            assert.equal(s3Params.Key, 'js-app/app.css.gz');
+            assert.equal(s3Params.CacheControl, 'max-age=63072000, public');
+            assert.equal(s3Params.ContentEncoding, 'gzip');
             assert.deepEqual(s3Params.Expires, new Date('2030'));
           });
       });
