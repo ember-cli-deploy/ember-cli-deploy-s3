@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.2.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.2.2) (2016-04-01)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.1...0.2.2)
+
+- Set the correct content type for gzipped files with the .gz ext [\#51](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/51) ([dannyfallon](https://github.com/dannyfallon))
+
 ## [0.2.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.2.1) (2016-02-06)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.0...0.2.1)
 
