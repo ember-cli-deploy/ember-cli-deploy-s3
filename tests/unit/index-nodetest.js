@@ -187,7 +187,7 @@ describe('s3 plugin', function() {
       assert.equal(context.config.s3.filePattern, '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}');
       assert.equal(context.config.s3.prefix, '');
       assert.equal(context.config.s3.cacheControl, 'max-age=63072000, public');
-      assert.equal(context.config.s3.expires, 'Mon Dec 31 2029 21:00:00 GMT-0300 (CLST)');
+      assert.equal(new Date(context.config.s3.expires).getTime(), new Date('Tue, 01 Jan 2030 00:00:00 GMT').getTime());;
     });
   });
 
