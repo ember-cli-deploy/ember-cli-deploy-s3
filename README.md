@@ -150,6 +150,18 @@ The client specified MUST implement functions called `getObject` and `putObject`
 
 *Default:* the default S3 library is `aws-sdk`
 
+### cacheControl
+
+Sets the `Cache-Control` header on the uploaded files.
+
+*Default:* `max-age=63072000, public`
+
+### expires
+
+Sets the `Expires` header on the uploaded files.
+
+*Default:* `Mon Dec 31 2029 21:00:00 GMT-0300 (CLST)`
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:

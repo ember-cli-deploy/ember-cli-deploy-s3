@@ -120,7 +120,7 @@ describe('s3 plugin', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 2);
+      assert.equal(messages.length, 4);
     });
 
     describe('required config', function() {
@@ -170,9 +170,13 @@ describe('s3 plugin', function() {
     it('adds default config to the config object', function() {
       delete context.config.s3.filePattern;
       delete context.config.s3.prefix;
+      delete context.config.s3.cacheControl;
+      delete context.config.s3.expires;
 
       assert.isUndefined(context.config.s3.filePattern);
       assert.isUndefined(context.config.s3.prefix);
+      assert.isUndefined(context.config.s3.cacheControl);
+      assert.isUndefined(context.config.s3.expires);
 
       var plugin = subject.createDeployPlugin({
         name: 's3'
@@ -180,8 +184,10 @@ describe('s3 plugin', function() {
       plugin.beforeHook(context);
       plugin.configure(context);
 
-      assert.isDefined(context.config.s3.filePattern);
-      assert.isDefined(context.config.s3.prefix);
+      assert.equal(context.config.s3.filePattern, '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}');
+      assert.equal(context.config.s3.prefix, '');
+      assert.equal(context.config.s3.cacheControl, 'max-age=63072000, public');
+      assert.equal(context.config.s3.expires, 'Mon Dec 31 2029 21:00:00 GMT-0300 (CLST)');
     });
   });
 
