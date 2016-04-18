@@ -6,6 +6,9 @@ var minimatch = require('minimatch');
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 var S3             = require('./lib/s3');
 
+var EXPIRE_IN_2030               = new Date('2030');
+var TWO_YEAR_CACHE_PERIOD_IN_SEC = 60 * 60 * 24 * 365 * 2;
+
 module.exports = {
   name: 'ember-cli-deploy-s3',
 
@@ -16,6 +19,8 @@ module.exports = {
         filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
         prefix: '',
         acl: 'public-read',
+        cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
+        expires: EXPIRE_IN_2030,
         distDir: function(context) {
           return context.distDir;
         },
@@ -48,6 +53,8 @@ module.exports = {
         var acl           = this.readConfig('acl');
         var prefix        = this.readConfig('prefix');
         var manifestPath  = this.readConfig('manifestPath');
+        var cacheControl  = this.readConfig('cacheControl');
+        var expires       = this.readConfig('expires');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true }));
 
@@ -62,7 +69,9 @@ module.exports = {
           prefix: prefix,
           bucket: bucket,
           acl: acl,
-          manifestPath: manifestPath
+          manifestPath: manifestPath,
+          cacheControl: cacheControl,
+          expires: expires
         };
 
         this.log('preparing to upload to S3 bucket `' + bucket + '`', { verbose: true });
