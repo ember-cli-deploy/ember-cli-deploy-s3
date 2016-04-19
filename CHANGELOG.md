@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.0) (2016-04-19)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.2...0.3.0)
+
+- Configure Cache-Control and Expires headers on the uploaded files. [\#53](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/53) ([YoranBrondsema](https://github.com/YoranBrondsema))
+
 ## [0.2.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.2.2) (2016-04-01)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.1...0.2.2)
 
