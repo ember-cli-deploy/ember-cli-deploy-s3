@@ -12,7 +12,7 @@ describe('s3', function() {
       putObject: function(params, cb) {
         cb();
       },
-      getObject: function(params, cb){
+      getObject: function(params, cb) {
         cb(new Error("File not found"));
       }
     };
@@ -168,13 +168,13 @@ describe('s3', function() {
             assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[4], /- ✔  js-app\/manifest\.txt/);
             done();
-          }).catch(function(reason){
+          }).catch(function(reason) {
             done(reason);
           });
       });
 
       it('only uploads missing files when manifest is present on server', function (done) {
-        s3Client.getObject = function(params, cb){
+        s3Client.getObject = function(params, cb) {
           cb(undefined, {
             Body: "app.js"
           });
@@ -197,7 +197,37 @@ describe('s3', function() {
             assert.match(mockUi.messages[2], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[3], /- ✔  js-app\/manifest\.txt/);
             done();
-          }).catch(function(reason){
+          }).catch(function(reason) {
+            done(reason);
+          });
+      });
+
+      it('does not upload manifest.txt when one of the files does not succeed uploading', function(done) {
+        s3Client.putObject = function(params, cb) {
+          if (params.Key === 'js-app/app.css') {
+            cb('error uploading');
+          } else {
+            cb();
+          }
+        };
+
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          manifestPath: 'manifest.txt'
+        };
+
+        var promise = subject.upload(options);
+
+        return assert.isRejected(promise)
+          .then(function() {
+            assert.equal(mockUi.messages.length, 3);
+            assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
+            assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
+            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
+            done();
+          }).catch(function(reason) {
             done(reason);
           });
       });
