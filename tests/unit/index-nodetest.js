@@ -35,6 +35,7 @@ describe('s3 plugin', function() {
         s3: {
           accessKeyId: 'aaaa',
           secretAccessKey: 'bbbb',
+          sessionToken: 'eeee',
           bucket: 'cccc',
           region: 'dddd',
           filePattern: '*.{css,js}',
