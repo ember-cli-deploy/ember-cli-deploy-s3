@@ -65,7 +65,7 @@ For detailed information on how configuration of plugins works, please refer to 
 
 ### accessKeyId
 
-The AWS access key for the user that has the ability to upload to the `bucket`. If this is left undefined, 
+The AWS access key for the user that has the ability to upload to the `bucket`. If this is left undefined,
 the normal [AWS SDK credential resolution][5] will take place.
 
 *Default:* `undefined`
@@ -73,6 +73,13 @@ the normal [AWS SDK credential resolution][5] will take place.
 ### secretAccessKey
 
 The AWS secret for the user that has the ability to upload to the `bucket`. This must be defined when `accessKeyId` is defined.
+
+*Default:* `undefined`
+
+### sessionToken
+
+The AWS session token for the user that has the ability to upload to the `bucket`. This may be required if you are using the [AWS Security Token Service][6].
+This requires both `accessKeyId` and `secretAccessKey` to be defined.
 
 *Default:* `undefined`
 
@@ -217,7 +224,7 @@ To properly serve certain assets (i.e. webfonts) a basic CORS configuration is n
 
 Replace **http://www.your-site.com** with your domain.
 
-Some more info: [Amazon CORS guide][6], [Stackoverflow][7]
+Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 
 
 ## Running Tests
@@ -229,5 +236,6 @@ Some more info: [Amazon CORS guide][6], [Stackoverflow][7]
 [3]: https://github.com/lukemelia/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
 [4]: https://github.com/lukemelia/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
 [5]: https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials "Setting AWS Credentials"
-[6]: http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html "Amazon CORS guide"
-[7]: http://stackoverflow.com/questions/12229844/amazon-s3-cors-cross-origin-resource-sharing-and-firefox-cross-domain-font-loa?answertab=votes#tab-top "Stackoverflow"
+[6]: http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html "AWS Security Token Service guide"
+[7]: http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html "Amazon CORS guide"
+[8]: http://stackoverflow.com/questions/12229844/amazon-s3-cors-cross-origin-resource-sharing-and-firefox-cross-domain-font-loa?answertab=votes#tab-top "Stackoverflow"
