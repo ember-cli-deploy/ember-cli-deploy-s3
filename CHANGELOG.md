@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.1) (2016-06-15)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.0...0.3.1)
+
+- Version 2.4.0 of aws-s3 client causing issues - SignatureDoesNotMatch [\#59](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/issues/59)
+- fix \#59 [\#60](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/60) ([ghedamat](https://github.com/ghedamat))
+- Includes session token if provided to client initialization. [\#57](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/57) ([RickCSong](https://github.com/RickCSong))
+- manifest.txt should be uploaded last [\#55](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/55) ([YoranBrondsema](https://github.com/YoranBrondsema))
+
 ## [0.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.0) (2016-04-19)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.2...0.3.0)
 
