@@ -41,6 +41,7 @@ describe('s3 plugin', function() {
           filePattern: '*.{css,js}',
           acl: 'authenticated-read',
           prefix: '',
+          proxy: 'http://user:password@internal.proxy.com',
           distDir: function(context) {
             return context.distDir;
           },
@@ -245,6 +246,27 @@ describe('s3 plugin', function() {
           assert.equal(mockUi.messages.length, 3);
           assert.match(mockUi.messages[1], /- Error: something bad went wrong/);
         });
+    });
+
+    it('calls proxy agent if a proxy is specified', function(done) {
+      var plugin = subject.createDeployPlugin({
+        name: 's3'
+      });
+
+      var assertionCount = 0
+      context.proxyAgent = function(proxy) {
+        assertionCount++;
+      };
+
+      plugin.beforeHook(context);
+      plugin.configure(context);
+
+      return assert.isFulfilled(plugin.upload(context)).then(function(){
+        assert.equal(assertionCount, 1);
+        done();
+      }).catch(function(reason){
+        done(reason.actual.stack);
+      });
     });
 
     it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {

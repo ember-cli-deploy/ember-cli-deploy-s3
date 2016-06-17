@@ -175,6 +175,12 @@ Sets the default mime type, used when it cannot be determined from the file exte
 
 *Default:* `application/octet-stream`
 
+### proxy
+
+The network proxy url used when sending requests to S3.
+
+*Default:* `undefined`
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:
