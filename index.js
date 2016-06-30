@@ -16,7 +16,7 @@ module.exports = {
     var DeployPlugin = DeployPluginBase.extend({
       name: options.name,
       defaultConfig: {
-        filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2}',
+        filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}',
         prefix: '',
         acl: 'public-read',
         cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
