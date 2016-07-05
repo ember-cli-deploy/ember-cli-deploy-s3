@@ -169,6 +169,12 @@ Sets the `Expires` header on the uploaded files.
 
 *Default:* `Mon Dec 31 2029 21:00:00 GMT-0300 (CLST)`
 
+### defaultMimeType
+
+Sets the default mime type, used when it cannot be determined from the file extension.
+
+*Default:* `application/octet-stream`
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:

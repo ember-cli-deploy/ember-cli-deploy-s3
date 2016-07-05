@@ -146,6 +146,47 @@ describe('s3', function() {
             assert.equal(s3Params.Expires, '2010');
           });
       });
+
+      it('sets the content type using defaultMimeType', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['index'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          defaultMimeType: 'text/html'
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function() {
+            assert.equal(s3Params.ContentType, 'text/html; charset=utf-8');
+          });
+        });
+
+      it('sets the content type to the default', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['index'],
+          cwd: process.cwd() + '/tests/fixtures/dist'
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function() {
+            assert.equal(s3Params.ContentType, 'application/octet-stream');
+          });
+        });
     });
 
     describe('with a manifestPath specified', function () {
