@@ -187,6 +187,27 @@ describe('s3', function() {
             assert.equal(s3Params.ContentType, 'application/octet-stream');
           });
         });
+
+      it('returns a promise with an array of the files uploaded', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app'
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function(filesUploaded) {
+            assert.deepEqual(filesUploaded, ['app.js', 'app.css']);
+          });
+      });
     });
 
     describe('with a manifestPath specified', function () {
@@ -201,13 +222,14 @@ describe('s3', function() {
         var promise = subject.upload(options);
 
         return assert.isFulfilled(promise)
-          .then(function() {
+          .then(function(filesUploaded) {
             assert.equal(mockUi.messages.length, 5);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
             assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
             assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[4], /- ✔  js-app\/manifest\.txt/);
+            assert.deepEqual(filesUploaded, ['app.js', 'app.css', 'manifest.txt']);
             done();
           }).catch(function(reason) {
             done(reason);
@@ -231,12 +253,13 @@ describe('s3', function() {
         var promise = subject.upload(options);
 
         return assert.isFulfilled(promise)
-          .then(function() {
+          .then(function(filesUploaded) {
             assert.equal(mockUi.messages.length, 4);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest found. Differential deploy will be applied\./);
             assert.match(mockUi.messages[2], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[3], /- ✔  js-app\/manifest\.txt/);
+            assert.deepEqual(filesUploaded, ['app.css', 'manifest.txt']);
             done();
           }).catch(function(reason) {
             done(reason);
