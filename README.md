@@ -103,7 +103,7 @@ The ACL to apply to the objects.
 
 ### prefix
 
-A directory within the `bucket` that the files should be uploaded in to.
+A directory within the `bucket` that the files should be uploaded in to. It should not have a leading or trailing slash.
 
 *Default:* `''`
 
