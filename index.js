@@ -21,6 +21,7 @@ module.exports = {
         acl: 'public-read',
         cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         expires: EXPIRE_IN_2030,
+        dotFolders: false,
         distDir: function(context) {
           return context.distDir;
         },
@@ -55,8 +56,9 @@ module.exports = {
         var manifestPath  = this.readConfig('manifestPath');
         var cacheControl  = this.readConfig('cacheControl');
         var expires       = this.readConfig('expires');
+        var dotFolders    = this.readConfig('dotFolders');
 
-        var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true }));
+        var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
 
         var s3 = this.readConfig('uploadClient') || new S3({
           plugin: this

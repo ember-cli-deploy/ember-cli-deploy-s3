@@ -125,6 +125,13 @@ The list of built project files. This option should be relative to `distDir` and
 
 *Default:* `context.distFiles`
 
+### dotFolders
+
+This is a boolean that can be set to `true` to include hidden folders
+(that are prefixed with a `.`) as folders that can be uploaded to S3.
+
+*Default:* `false`
+
 ### gzippedFiles
 
 The list of files that have been gziped. This option should be relative to `distDir`. By default, this option will use the `gzippedFiles` property of the deployment context, provided by [ember-cli-deploy-gzip][3].
