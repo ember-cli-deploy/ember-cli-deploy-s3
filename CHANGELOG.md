@@ -1,8 +1,16 @@
 # Change Log
 
-## [0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.1) (2016-06-15)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.0...0.3.1)
+## [0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.2) (2016-09-13)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.1...0.3.2)
 
+- added config to include hidden folders in the S3 upload [\#70](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/70) ([habdelra](https://github.com/habdelra))
+- \[DOC\] Add tip for slashes in the prefix [\#69](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/69) ([harianus](https://github.com/harianus))
+- Allow setting of default mime type for files with no extension [\#63](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/63) ([robwebdev](https://github.com/robwebdev))
+- Add otf file type to default filePattern [\#62](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/62) ([koriroys](https://github.com/koriroys))
+- Add network proxy option [\#61](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/61) ([v-shan](https://github.com/v-shan))
+
+## [v0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.3.1) (2016-06-16)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.0...v0.3.1)
 - Version 2.4.0 of aws-s3 client causing issues - SignatureDoesNotMatch [\#59](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/issues/59)
 - fix \#59 [\#60](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/60) ([ghedamat](https://github.com/ghedamat))
 - Includes session token if provided to client initialization. [\#57](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/57) ([RickCSong](https://github.com/RickCSong))
