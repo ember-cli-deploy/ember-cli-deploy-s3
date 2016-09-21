@@ -18,6 +18,7 @@ module.exports = {
       defaultConfig: {
         filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}',
         prefix: '',
+        profile: '',
         acl: 'public-read',
         cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         expires: EXPIRE_IN_2030,

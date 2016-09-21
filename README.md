@@ -83,6 +83,13 @@ This requires both `accessKeyId` and `secretAccessKey` to be defined.
 
 *Default:* `undefined`
 
+### profile
+
+The AWS profile as definied in `~/.aws/credentials`. If this is left undefined,
+the normal [AWS SDK credential resolution][5] will take place.
+
+*Default:* `undefined`
+
 ### bucket (`required`)
 
 The AWS bucket that the files will be uploaded to.

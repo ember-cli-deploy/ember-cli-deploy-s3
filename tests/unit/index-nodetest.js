@@ -38,6 +38,7 @@ describe('s3 plugin', function() {
           sessionToken: 'eeee',
           bucket: 'cccc',
           region: 'dddd',
+          profile: 'ffff',
           filePattern: '*.{css,js}',
           acl: 'authenticated-read',
           prefix: '',
