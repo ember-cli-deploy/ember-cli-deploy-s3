@@ -45,19 +45,20 @@ module.exports = {
       requiredConfig: ['bucket', 'region'],
 
       upload: function(context) {
-        var self         = this;
+        var self                  = this;
 
-        var filePattern   = this.readConfig('filePattern');
-        var distDir       = this.readConfig('distDir');
-        var distFiles     = this.readConfig('distFiles');
-        var gzippedFiles  = this.readConfig('gzippedFiles');
-        var bucket        = this.readConfig('bucket');
-        var acl           = this.readConfig('acl');
-        var prefix        = this.readConfig('prefix');
-        var manifestPath  = this.readConfig('manifestPath');
-        var cacheControl  = this.readConfig('cacheControl');
-        var expires       = this.readConfig('expires');
-        var dotFolders    = this.readConfig('dotFolders');
+        var filePattern           = this.readConfig('filePattern');
+        var distDir               = this.readConfig('distDir');
+        var distFiles             = this.readConfig('distFiles');
+        var gzippedFiles          = this.readConfig('gzippedFiles');
+        var bucket                = this.readConfig('bucket');
+        var acl                   = this.readConfig('acl');
+        var prefix                = this.readConfig('prefix');
+        var manifestPath          = this.readConfig('manifestPath');
+        var cacheControl          = this.readConfig('cacheControl');
+        var expires               = this.readConfig('expires');
+        var dotFolders            = this.readConfig('dotFolders');
+        var serverSideEncryption  = this.readConfig('serverSideEncryption');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
 
@@ -76,6 +77,10 @@ module.exports = {
           cacheControl: cacheControl,
           expires: expires
         };
+
+        if (serverSideEncryption) {
+          options.serverSideEncryption = serverSideEncryption;
+        }
 
         this.log('preparing to upload to S3 bucket `' + bucket + '`', { verbose: true });
 
