@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.4.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.4.0) (2016-11-01)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.2...0.4.0)
+
+- [#67](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/67) filesUploaded should return all files when using manifest [@wongpeiyi/fix](https://github.com/wongpeiyi/fix)
+- [#71](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/71) Allow support for alternate AWS profiles. [@seanstar12](https://github.com/seanstar12)
+- [#72](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/72) Add Server Side Encryption [@sethpollack](https://github.com/sethpollack)
+- [#74](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/74) Loosen aws-sdk version [@outstand](https://github.com/outstand)
+
 ## [0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/0.3.2) (2016-09-13)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.1...0.3.2)
 
