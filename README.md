@@ -195,6 +195,12 @@ The network proxy url used when sending requests to S3.
 
 *Default:* `undefined`
 
+### serverSideEncryption
+
+The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms). Possible values include:
+  - "AES256"
+  - "aws:kms"
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:
