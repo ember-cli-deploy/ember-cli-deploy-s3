@@ -123,7 +123,7 @@ describe('s3 plugin', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 5);
+      assert.equal(messages.length, 6);
     });
 
     describe('required config', function() {

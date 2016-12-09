@@ -201,6 +201,14 @@ The Server-side encryption algorithm used when storing this object in S3 (e.g., 
   - "AES256"
   - "aws:kms"
 
+### batchSize
+
+S3 `putObject` requests will be performed in `batchSize` increments if set to a value other than 0.
+
+Useful when deploying applications to [fake-s3](https://github.com/jubos/fake-s3/), or applications large enough to trigger S3 rate limits (very uncommon).
+
+*Default:* `0`
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:
