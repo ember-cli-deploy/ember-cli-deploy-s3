@@ -1,5 +1,8 @@
-var assert = require('ember-cli/tests/helpers/assert');
+var chai  = require('chai');
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
 
+var assert = chai.assert;
 describe('s3', function() {
   var S3, mockUi, s3Client, plugin, subject;
 
