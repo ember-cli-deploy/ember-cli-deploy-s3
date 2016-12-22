@@ -326,5 +326,115 @@ describe('s3', function() {
           });
       });
     });
+
+    describe('with an integer batchSize specified', function () {
+      it('uploads all files', function () {
+        var options = {
+        filePaths: ['app.js', 'app.css'],
+        cwd: process.cwd() + '/tests/fixtures/dist',
+        prefix: 'js-app',
+        batchSize: 10
+      };
+
+      var promises = subject.upload(options);
+
+      return assert.isFulfilled(promises)
+        .then(function() {
+          assert.equal(mockUi.messages.length, 2);
+
+          var messages = mockUi.messages.reduce(function(previous, current) {
+            if (/- ✔  js-app\/app\.[js|css]/.test(current)) {
+              previous.push(current);
+            }
+
+            return previous;
+          }, []);
+
+          assert.equal(messages.length, 2);
+        });
+      });
+
+      it('returns a promise with an array of the files uploaded', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          batchSize: 10
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function(filesUploaded) {
+            assert.deepEqual(filesUploaded, ['app.js', 'app.css']);
+          });
+      });
+
+      it('uploads the correct number of batches', function (done) {
+        var s3Params;
+        var requests = 0;
+
+        s3Client.putObject = function (params, cb) {
+          s3Params = params;
+          requests++;
+          cb();
+        };
+
+        var oldPutObjectsBatch = subject._putObjectsBatch.bind(subject);
+        var called = false;
+
+        //Spy on _putObjectsBatch, making sure that after it has executed a batch it has created 2 requests
+        subject._putObjectsBatch = function (paths, options) {
+          if (!called) {
+            called = true;
+            return oldPutObjectsBatch(paths, options);
+          }
+
+          assert.equal(requests, 2);
+
+          subject._putObjectsBatch = oldPutObjectsBatch;
+          return subject._putObjectsBatch(paths, options);
+        };
+
+        var options = {
+          filePaths: ['app.js', 'app.css', 'app.css.gz', 'manifest.txt'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          batchSize: 2
+        };
+
+        return subject.upload(options)
+          .then(function () {
+            assert.equal(requests, 4);
+            done();
+          })
+          .catch(function (reason) {
+            done(reason);
+          });
+      });
+
+      it('rejects if an upload fails', function (done) {
+        s3Client.putObject = function(params, cb) {
+          cb('error uploading');
+        };
+
+        var options = {
+          filePaths: ['app.js', 'app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          batchSize: 10
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isRejected(promises).then(function () { done(); });
+      });
+    });
   });
 });

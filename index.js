@@ -23,6 +23,7 @@ module.exports = {
         cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         expires: EXPIRE_IN_2030,
         dotFolders: false,
+        batchSize: 0,
         distDir: function(context) {
           return context.distDir;
         },
@@ -44,7 +45,7 @@ module.exports = {
       },
       requiredConfig: ['bucket', 'region'],
 
-      upload: function(context) {
+      upload: function() {
         var self                  = this;
 
         var filePattern           = this.readConfig('filePattern');
@@ -59,6 +60,7 @@ module.exports = {
         var expires               = this.readConfig('expires');
         var dotFolders            = this.readConfig('dotFolders');
         var serverSideEncryption  = this.readConfig('serverSideEncryption');
+        var batchSize             = this.readConfig('batchSize');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
 
@@ -75,7 +77,8 @@ module.exports = {
           acl: acl,
           manifestPath: manifestPath,
           cacheControl: cacheControl,
-          expires: expires
+          expires: expires,
+          batchSize: batchSize
         };
 
         if (serverSideEncryption) {
