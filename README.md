@@ -271,7 +271,7 @@ Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 
 - `npm test`
 
-[1]: http://ember-cli.github.io/ember-cli-deploy/plugins "Plugin Documentation"
+[1]: http://ember-cli-deploy.com/plugins/ "Plugin Documentation"
 [2]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"
 [3]: https://github.com/lukemelia/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
 [4]: https://github.com/lukemelia/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
