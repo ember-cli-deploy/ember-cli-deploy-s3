@@ -237,8 +237,7 @@ Ensure you have the minimum required permissions configured for the user (access
             ],
             "Resource": [
                 "arn:aws:s3:::<your-s3-bucket-name>/*"
-            ],
-            "Principal": { "AWS": "arn:aws:iam::AWS-account-ID:root" }
+            ]
         }
     ]
 }
