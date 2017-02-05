@@ -209,6 +209,15 @@ Useful when deploying applications to [fake-s3](https://github.com/jubos/fake-s3
 
 *Default:* `0`
 
+
+### signatureVersion
+
+`signatureVersion` allows for setting the Signature Version. In the Asia Pacific (Mumbai), Asia Pacific (Seoul), EU (Frankfurt) and China (Beijing) regions, Amazon S3 supports only Signature Version 4. In all other regions, Amazon S3 supports both Signature Version 4 and Signature Version 2.
+
+*Example value*: `'v4'`
+
+*Default*: `undefined`
+
 ## Prerequisites
 
 The following properties are expected to be present on the deployment `context` object:
