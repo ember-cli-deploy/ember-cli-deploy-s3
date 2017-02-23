@@ -241,7 +241,7 @@ describe('s3', function() {
     });
 
     describe('with a manifestPath specified', function () {
-      it('uploads all files when manifest is missing from server', function (done) {
+      it('uploads all files when manifest is missing from server', function () {
         var options = {
           filePaths: ['app.js', 'app.css'],
           cwd: process.cwd() + '/tests/fixtures/dist',
@@ -260,13 +260,10 @@ describe('s3', function() {
             assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[4], /- ✔  js-app\/manifest\.txt/);
             assert.deepEqual(filesUploaded, ['app.js', 'app.css', 'manifest.txt']);
-            done();
-          }).catch(function(reason) {
-            done(reason);
           });
       });
 
-      it('only uploads missing files when manifest is present on server', function (done) {
+      it('only uploads missing files when manifest is present on server', function () {
         s3Client.getObject = function(params, cb) {
           cb(undefined, {
             Body: "app.js"
@@ -290,13 +287,10 @@ describe('s3', function() {
             assert.match(mockUi.messages[2], /- ✔  js-app\/app\.css/);
             assert.match(mockUi.messages[3], /- ✔  js-app\/manifest\.txt/);
             assert.deepEqual(filesUploaded, ['app.css', 'manifest.txt']);
-            done();
-          }).catch(function(reason) {
-            done(reason);
           });
       });
 
-      it('does not upload manifest.txt when one of the files does not succeed uploading', function(done) {
+      it('does not upload manifest.txt when one of the files does not succeed uploading', function() {
         s3Client.putObject = function(params, cb) {
           if (params.Key === 'js-app/app.css') {
             cb('error uploading');
@@ -320,9 +314,6 @@ describe('s3', function() {
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
             assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
-            done();
-          }).catch(function(reason) {
-            done(reason);
           });
       });
     });
@@ -376,7 +367,7 @@ describe('s3', function() {
           });
       });
 
-      it('uploads the correct number of batches', function (done) {
+      it('uploads the correct number of batches', function () {
         var s3Params;
         var requests = 0;
 
@@ -412,14 +403,10 @@ describe('s3', function() {
         return subject.upload(options)
           .then(function () {
             assert.equal(requests, 4);
-            done();
-          })
-          .catch(function (reason) {
-            done(reason);
           });
       });
 
-      it('rejects if an upload fails', function (done) {
+      it('rejects if an upload fails', function () {
         s3Client.putObject = function(params, cb) {
           cb('error uploading');
         };
@@ -433,7 +420,7 @@ describe('s3', function() {
 
         var promises = subject.upload(options);
 
-        return assert.isRejected(promises).then(function () { done(); });
+        return assert.isRejected(promises);
       });
     });
   });
