@@ -21,7 +21,7 @@
   "dependencies": {
     "aws-sdk": "^2.6.12",
     "chalk": "^1.0.0",
-    "core-object": "^3.0.0",
+    "core-object": "^2.1.1",
     "ember-cli-babel": "^5.1.7",
     "ember-cli-deploy-plugin": "^0.2.2",
     "lodash": "^4.17.4",
