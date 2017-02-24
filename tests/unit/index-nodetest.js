@@ -253,7 +253,7 @@ describe('s3 plugin', function() {
         });
     });
 
-    it('calls proxy agent if a proxy is specified', function(done) {
+    it('calls proxy agent if a proxy is specified', function() {
       var plugin = subject.createDeployPlugin({
         name: 's3'
       });
@@ -266,15 +266,12 @@ describe('s3 plugin', function() {
       plugin.beforeHook(context);
       plugin.configure(context);
 
-      return assert.isFulfilled(plugin.upload(context)).then(function(){
+      assert.isFulfilled(plugin.upload(context)).then(function(){
         assert.equal(assertionCount, 1);
-        done();
-      }).catch(function(reason){
-        done(reason.actual.stack);
       });
     });
 
-    it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {
+    it('sets the appropriate header if the file is inclued in gzippedFiles list', function() {
       var plugin = subject.createDeployPlugin({
         name: 's3'
       });
@@ -301,9 +298,6 @@ describe('s3 plugin', function() {
       plugin.beforeHook(context);
       return assert.isFulfilled(plugin.upload(context)).then(function(){
         assert.equal(assertionCount, 2);
-        done();
-      }).catch(function(reason){
-        done(reason.actual.stack);
       });
     });
   });
