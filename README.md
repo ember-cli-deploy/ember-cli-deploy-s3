@@ -231,8 +231,8 @@ The following properties are expected to be present on the deployment `context` 
 
 ### Deployment user and S3 permissions
 
-The server, user account, or CI environment that deploys needs to have a policy that allows writing to the S3 bucket.
-The best way to do this is to create an IAM user to be the "deployer", and place its security credentials (Access Key ID and Access Secret) in the environment where the `ember deploy` command will be run.
+The environment in which the `ember deploy` command is run (outside of development) needs to have an AWS account with a policy that allows writing to the S3 bucket.
+The best way to do this is to create an IAM user to be the "deployer", and place its security credentials (Access Key ID and Access Secret) in the environment on the server or CI environment where deployment takes place.
 
 A bare minimum policy should have the following permissions:
 
