@@ -281,8 +281,8 @@ Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 
 [1]: http://ember-cli-deploy.com/plugins/ "Plugin Documentation"
 [2]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"
-[3]: https://github.com/lukemelia/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
-[4]: https://github.com/lukemelia/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
+[3]: https://github.com/ember-cli-deploy/ember-cli-deploy-gzip "ember-cli-deploy-gzip"
+[4]: https://github.com/ember-cli-deploy/ember-cli-deploy-manifest "ember-cli-deploy-manifest"
 [5]: https://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials "Setting AWS Credentials"
 [6]: http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html "AWS Security Token Service guide"
 [7]: http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html "Amazon CORS guide"
