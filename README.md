@@ -231,8 +231,11 @@ The following properties are expected to be present on the deployment `context` 
 
 ### Deployment user and S3 permissions
 
-The environment in which the `ember deploy` command is run (outside of development) needs to have an AWS account with a policy that allows writing to the S3 bucket.
-The best way to do this is to create an IAM user to be the "deployer", and place its security credentials (Access Key ID and Access Secret) in the environment on the server or CI environment where deployment takes place.
+The environment in which the `ember deploy` command is run needs to have an AWS account with a policy that allows writing to the S3 bucket.
+
+It's common for a development machine to be set up with the developer's personal AWS credentials, which likely have the ability to administer the entire AWS account. This will allow deployment to work from the development machine, but it is not a good idea to copy your personal credentials to production.
+
+The best way to set up non-development deployment is to create an IAM user to be the "deployer", and [place its security credentials][9] (Access Key ID and Access Secret) in the environment on the machine or CI environment where deployment takes place. (The easiest way to do this in CI is to set environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.)
 
 A bare minimum policy should have the following permissions:
 
@@ -315,3 +318,4 @@ Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 [6]: http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html "AWS Security Token Service guide"
 [7]: http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html "Amazon CORS guide"
 [8]: http://stackoverflow.com/questions/12229844/amazon-s3-cors-cross-origin-resource-sharing-and-firefox-cross-domain-font-loa?answertab=votes#tab-top "Stackoverflow"
+[9]: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files "AWS Configuration"
