@@ -5,7 +5,7 @@ var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 
 var assert = chai.assert;
-var Promise = require('ember-cli/lib/ext/promise');
+var RSVP = require('rsvp');
 
 describe('s3 plugin', function() {
   var subject;
@@ -32,7 +32,7 @@ describe('s3 plugin', function() {
       ui: mockUi,
       uploadClient: {
         upload: function(options) {
-          return Promise.resolve(['app.css', 'app.js']);
+          return RSVP.resolve(['app.css', 'app.js']);
         }
       },
       config: {
@@ -241,7 +241,7 @@ describe('s3 plugin', function() {
 
       context.uploadClient = {
         upload: function(opts) {
-          return Promise.reject(new Error('something bad went wrong'));
+          return RSVP.reject(new Error('something bad went wrong'));
         }
       };
 
