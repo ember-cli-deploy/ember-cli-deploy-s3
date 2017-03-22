@@ -1,3 +1,4 @@
+/*eslint-env node*/
 var chai  = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
@@ -7,7 +8,7 @@ describe('s3', function() {
   var S3, mockUi, s3Client, plugin, subject;
 
   before(function() {
-    S3 = require('../../../lib/s3');
+    S3 = require('../../lib/s3');
   });
 
   beforeEach(function() {
@@ -33,7 +34,7 @@ describe('s3', function() {
           return s3Client;
         }
       },
-      log: function(message, opts) {
+      log: function(message/*, opts */) {
         this.ui.write('|    ');
         this.ui.writeLine('- ' + message);
       }
@@ -58,7 +59,7 @@ describe('s3', function() {
           assert.equal(mockUi.messages.length, 2);
 
           var messages = mockUi.messages.reduce(function(previous, current) {
-            if (/- ✔  js-app\/app\.[js|css]/.test(current)) {
+            if (/- ✔ {2}js-app\/app\.[js|css]/.test(current)) {
               previous.push(current);
             }
 
@@ -219,9 +220,7 @@ describe('s3', function() {
         });
 
       it('returns a promise with an array of the files uploaded', function() {
-        var s3Params;
         s3Client.putObject = function(params, cb) {
-          s3Params = params;
           cb();
         };
 
@@ -256,9 +255,9 @@ describe('s3', function() {
             assert.equal(mockUi.messages.length, 5);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
-            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
-            assert.match(mockUi.messages[3], /- ✔  js-app\/app\.css/);
-            assert.match(mockUi.messages[4], /- ✔  js-app\/manifest\.txt/);
+            assert.match(mockUi.messages[2], /- ✔ {2}js-app\/app\.js/);
+            assert.match(mockUi.messages[3], /- ✔ {2}js-app\/app\.css/);
+            assert.match(mockUi.messages[4], /- ✔ {2}js-app\/manifest\.txt/);
             assert.deepEqual(filesUploaded, ['app.js', 'app.css', 'manifest.txt']);
           });
       });
@@ -284,8 +283,8 @@ describe('s3', function() {
             assert.equal(mockUi.messages.length, 4);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest found. Differential deploy will be applied\./);
-            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.css/);
-            assert.match(mockUi.messages[3], /- ✔  js-app\/manifest\.txt/);
+            assert.match(mockUi.messages[2], /- ✔ {2}js-app\/app\.css/);
+            assert.match(mockUi.messages[3], /- ✔ {2}js-app\/manifest\.txt/);
             assert.deepEqual(filesUploaded, ['app.css', 'manifest.txt']);
           });
       });
@@ -313,7 +312,7 @@ describe('s3', function() {
             assert.equal(mockUi.messages.length, 3);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest not found. Disabling differential deploy\./);
-            assert.match(mockUi.messages[2], /- ✔  js-app\/app\.js/);
+            assert.match(mockUi.messages[2], /- ✔ {2}js-app\/app\.js/);
           });
       });
     });
@@ -334,7 +333,7 @@ describe('s3', function() {
           assert.equal(mockUi.messages.length, 2);
 
           var messages = mockUi.messages.reduce(function(previous, current) {
-            if (/- ✔  js-app\/app\.[js|css]/.test(current)) {
+            if (/- ✔ {2}js-app\/app\.[js|css]/.test(current)) {
               previous.push(current);
             }
 
@@ -346,9 +345,7 @@ describe('s3', function() {
       });
 
       it('returns a promise with an array of the files uploaded', function() {
-        var s3Params;
         s3Client.putObject = function(params, cb) {
-          s3Params = params;
           cb();
         };
 
@@ -368,11 +365,9 @@ describe('s3', function() {
       });
 
       it('uploads the correct number of batches', function () {
-        var s3Params;
         var requests = 0;
 
         s3Client.putObject = function (params, cb) {
-          s3Params = params;
           requests++;
           cb();
         };

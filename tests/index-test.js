@@ -1,3 +1,4 @@
+/*eslint-env node*/
 'use strict';
 
 var chai  = require('chai');
@@ -13,7 +14,7 @@ describe('s3 plugin', function() {
   var context;
 
   before(function() {
-    subject = require('../../index');
+    subject = require('../index');
   });
 
   beforeEach(function() {
@@ -31,7 +32,7 @@ describe('s3 plugin', function() {
       distFiles: ['app.css', 'app.js'],
       ui: mockUi,
       uploadClient: {
-        upload: function(options) {
+        upload: function(/* options */) {
           return RSVP.resolve(['app.css', 'app.js']);
         }
       },
@@ -138,7 +139,7 @@ describe('s3 plugin', function() {
           name: 's3'
         });
         plugin.beforeHook(context);
-        assert.throws(function(error){
+        assert.throws(function(/* error */){
           plugin.configure(context);
         });
         var messages = mockUi.messages.reduce(function(previous, current) {
@@ -159,7 +160,7 @@ describe('s3 plugin', function() {
           name: 's3'
         });
         plugin.beforeHook(context);
-        assert.throws(function(error){
+        assert.throws(function(/* error */){
           plugin.configure(context);
         });
         var messages = mockUi.messages.reduce(function(previous, current) {
@@ -194,7 +195,7 @@ describe('s3 plugin', function() {
       assert.equal(context.config.s3.filePattern, '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}');
       assert.equal(context.config.s3.prefix, '');
       assert.equal(context.config.s3.cacheControl, 'max-age=63072000, public');
-      assert.equal(new Date(context.config.s3.expires).getTime(), new Date('Tue, 01 Jan 2030 00:00:00 GMT').getTime());;
+      assert.equal(new Date(context.config.s3.expires).getTime(), new Date('Tue, 01 Jan 2030 00:00:00 GMT').getTime());
     });
   });
 
@@ -240,7 +241,7 @@ describe('s3 plugin', function() {
       });
 
       context.uploadClient = {
-        upload: function(opts) {
+        upload: function(/* opts */) {
           return RSVP.reject(new Error('something bad went wrong'));
         }
       };
@@ -259,7 +260,7 @@ describe('s3 plugin', function() {
       });
 
       var assertionCount = 0
-      context.proxyAgent = function(proxy) {
+      context.proxyAgent = function(/* proxy */) {
         assertionCount++;
       };
 
@@ -271,7 +272,7 @@ describe('s3 plugin', function() {
       });
     });
 
-    it('sets the appropriate header if the file is inclued in gzippedFiles list', function() {
+    it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {
       var plugin = subject.createDeployPlugin({
         name: 's3'
       });
@@ -296,8 +297,11 @@ describe('s3 plugin', function() {
       };
 
       plugin.beforeHook(context);
-      return assert.isFulfilled(plugin.upload(context)).then(function(){
+      assert.isFulfilled(plugin.upload(context)).then(function(){
         assert.equal(assertionCount, 2);
+        done();
+      }).catch(function(reason){
+        done(reason);
       });
     });
   });
