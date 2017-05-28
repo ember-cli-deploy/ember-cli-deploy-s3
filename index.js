@@ -61,6 +61,7 @@ module.exports = {
         var dotFolders            = this.readConfig('dotFolders');
         var serverSideEncryption  = this.readConfig('serverSideEncryption');
         var batchSize             = this.readConfig('batchSize');
+        var defaultMimeType       = this.readConfig('defaultMimeType');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
 
@@ -78,7 +79,8 @@ module.exports = {
           manifestPath: manifestPath,
           cacheControl: cacheControl,
           expires: expires,
-          batchSize: batchSize
+          batchSize: batchSize,
+          defaultMimeType: defaultMimeType
         };
 
         if (serverSideEncryption) {
