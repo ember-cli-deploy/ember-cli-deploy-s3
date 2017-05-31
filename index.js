@@ -24,6 +24,7 @@ module.exports = {
         expires: EXPIRE_IN_2030,
         dotFolders: false,
         batchSize: 0,
+        defaultMimeType: 'application/octet-stream',
         distDir: function(context) {
           return context.distDir;
         },
