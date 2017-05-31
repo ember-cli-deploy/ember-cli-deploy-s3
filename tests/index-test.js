@@ -128,7 +128,7 @@ describe('s3 plugin', function() {
         return previous;
       }, []);
 
-      assert.equal(messages.length, 6);
+      assert.equal(messages.length, 7);
     });
 
     describe('required config', function() {
