@@ -1,5 +1,11 @@
 # Change Log
 
+## [v1.1.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.1.0) (2017-05-31)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0...v1.1.0)
+
+**Merged pull requests:**
+- Fix defaultMimeType option binding [\#94](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/94) ([wytlytningNZ](https://github.com/wytlytningNZ))
+
 ## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0) (2017-03-25)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0-beta.0...v1.0.0)
 
