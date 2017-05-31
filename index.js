@@ -24,6 +24,7 @@ module.exports = {
         expires: EXPIRE_IN_2030,
         dotFolders: false,
         batchSize: 0,
+        defaultMimeType: 'application/octet-stream',
         distDir: function(context) {
           return context.distDir;
         },
@@ -61,6 +62,7 @@ module.exports = {
         var dotFolders            = this.readConfig('dotFolders');
         var serverSideEncryption  = this.readConfig('serverSideEncryption');
         var batchSize             = this.readConfig('batchSize');
+        var defaultMimeType       = this.readConfig('defaultMimeType');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
 
@@ -78,7 +80,8 @@ module.exports = {
           manifestPath: manifestPath,
           cacheControl: cacheControl,
           expires: expires,
-          batchSize: batchSize
+          batchSize: batchSize,
+          defaultMimeType: defaultMimeType
         };
 
         if (serverSideEncryption) {
