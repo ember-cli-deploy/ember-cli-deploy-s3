@@ -62,7 +62,6 @@ describe('s3', function() {
             if (/- ✔ {2}js-app\/app\.[js|css]/.test(current)) {
               previous.push(current);
             }
-
             return previous;
           }, []);
 
@@ -265,27 +264,29 @@ describe('s3', function() {
       it('only uploads missing files when manifest is present on server', function () {
         s3Client.getObject = function(params, cb) {
           cb(undefined, {
-            Body: "app.js"
+            Body: "app.js\nVERSION.txt"
           });
         };
 
         var options = {
-          filePaths: ['app.js', 'app.css'],
+          filePaths: ['app.js', 'app.css', 'VERSION.txt'],
           cwd: process.cwd() + '/tests/fixtures/dist',
           prefix: 'js-app',
-          manifestPath: 'manifest.txt'
+          manifestPath: 'manifest.txt',
+          deployAlways: ['VERSION.txt']
         };
 
         var promise = subject.upload(options);
 
         return assert.isFulfilled(promise)
           .then(function(filesUploaded) {
-            assert.equal(mockUi.messages.length, 4);
+            assert.equal(mockUi.messages.length, 5);
             assert.match(mockUi.messages[0], /- Downloading manifest for differential deploy.../);
             assert.match(mockUi.messages[1], /- Manifest found. Differential deploy will be applied\./);
             assert.match(mockUi.messages[2], /- ✔ {2}js-app\/app\.css/);
-            assert.match(mockUi.messages[3], /- ✔ {2}js-app\/manifest\.txt/);
-            assert.deepEqual(filesUploaded, ['app.css', 'manifest.txt']);
+            assert.match(mockUi.messages[3], /- ✔ {2}js-app\/VERSION\.txt/);
+            assert.match(mockUi.messages[4], /- ✔ {2}js-app\/manifest\.txt/);
+            assert.deepEqual(filesUploaded, ['app.css', 'VERSION.txt', 'manifest.txt']);
           });
       });
 
