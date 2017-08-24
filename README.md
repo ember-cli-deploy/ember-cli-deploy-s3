@@ -177,11 +177,19 @@ The client specified MUST implement functions called `getObject` and `putObject`
 
 Sets the `Cache-Control` header on the uploaded files.
 
+This can also be a function. The function will be called for each file, with the
+file's path passed in to the function, it will use the return value of the
+function as the `Cache-Control` header's value.
+
 *Default:* `max-age=63072000, public`
 
 ### expires
 
 Sets the `Expires` header on the uploaded files.
+
+This can also be a function. The function will be called for each file, with the
+file's path passed in to the function, it will use the return value of the
+function as the `Expires` header's value.
 
 *Default:* `Mon Dec 31 2029 21:00:00 GMT-0300 (CLST)`
 

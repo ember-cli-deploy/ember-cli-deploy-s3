@@ -178,6 +178,56 @@ describe('s3', function() {
           });
       });
 
+      it('cacheControl option is a function', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.js'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          cacheControl: function(filePath) {
+            if (filePath === 'app.js') {
+              return 'no-cache';
+            }
+          },
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function() {
+            assert.equal(s3Params.CacheControl, 'no-cache');
+          });
+      });
+
+      it('expires option is a function', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.js'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          expires: function(filePath) {
+            if (filePath === 'app.js') {
+              return 'Thu, 01 Jan 1970 00:00:01 GMT';
+            }
+          },
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function() {
+            assert.equal(s3Params.Expires, 'Thu, 01 Jan 1970 00:00:01 GMT');
+          });
+      });
+
       it('sets the content type using defaultMimeType', function() {
         var s3Params;
         s3Client.putObject = function(params, cb) {
