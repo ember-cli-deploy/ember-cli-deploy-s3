@@ -275,7 +275,7 @@ If you want the contents of the S3 bucket to be accessible to the world, the fol
             "Sid": "Stmt1EmberCLIS3AccessPolicy",
             "Effect": "Allow",
             "Action": [
-                "s3:GetObject",
+                "s3:GetObject"
             ],
             "Resource": [
                 "arn:aws:s3:::your-s3-bucket-name/*"
