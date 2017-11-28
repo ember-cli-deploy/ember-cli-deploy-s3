@@ -120,7 +120,7 @@ A directory within the `bucket` that the files should be uploaded in to. It shou
 
 Files that match this pattern will be uploaded to S3. The file pattern must be relative to `distDir`.
 
-*Default:* '\*\*/\*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}'
+*Default:* '\*\*/\*.{js,css,png,gif,ico,jpg,map,json,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}'
 
 ### distDir
 
