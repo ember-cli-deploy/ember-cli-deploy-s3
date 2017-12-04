@@ -270,16 +270,14 @@ If you want the contents of the S3 bucket to be accessible to the world, the fol
 
 ```js
 {
+    "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Stmt1EmberCLIS3AccessPolicy",
+            "Sid": "PublicReadForGetBucketObjects",
             "Effect": "Allow",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::your-s3-bucket-name/*"
-            ]
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::swordfish.space/*"
         }
     ]
 }
