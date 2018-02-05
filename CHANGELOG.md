@@ -1,15 +1,24 @@
 # Change Log
 
+## [1.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.2.0) (2018-02-05)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.1.0...1.2.0)
+
+**Merged pull requests:**
+
+- Support brotli [\#104](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/104) ([cibernox](https://github.com/cibernox))
+- add wasm to filePattern defaults \#101 [\#102](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/102) ([jenweber](https://github.com/jenweber))
+- \[DOC\] remove trailing comma [\#98](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/98) ([fivetanley](https://github.com/fivetanley))
+
 ## [v1.1.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.1.0) (2017-05-31)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0...v1.1.0)
 
 **Merged pull requests:**
+
 - Fix defaultMimeType option binding [\#94](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/94) ([wytlytningNZ](https://github.com/wytlytningNZ))
+- DOC - formatting updates to README [\#91](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/91) ([et](https://github.com/et))
 
-## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0) (2017-03-25)
+## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0) (2017-04-06)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0-beta.0...v1.0.0)
-
-No changes from 1.0.0-beta.0
 
 ## [v1.0.0-beta.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0-beta.0) (2017-03-25)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.4.0...v1.0.0-beta.0)
@@ -44,7 +53,7 @@ No changes from 1.0.0-beta.0
 **Merged pull requests:**
 
 - added config to include hidden folders in the S3 upload [\#70](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/70) ([habdelra](https://github.com/habdelra))
-- \[DOC\] Add tip for slashes in the prefix [\#69](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/69) ([harianus](https://github.com/harianus))
+- \[DOC\] Add tip for slashes in the prefix [\#69](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/69) ([adriaanvanrossum](https://github.com/adriaanvanrossum))
 - Allow setting of default mime type for files with no extension [\#63](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/63) ([robwebdev](https://github.com/robwebdev))
 - Add otf file type to default filePattern [\#62](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/62) ([koriroys](https://github.com/koriroys))
 - Add network proxy option [\#61](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/61) ([v-shan](https://github.com/v-shan))
