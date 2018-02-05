@@ -178,6 +178,36 @@ describe('s3', function() {
           });
       });
 
+      it('sends the correct content type params for brotli-compressed files with .br extension', function () {
+        var s3Params;
+        s3Client.putObject = function (params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.css', 'app.css.br'],
+          brotliCompressedFilePaths: ['app.css.br'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          acl: 'public-read',
+          bucket: 'some-bucket',
+          cacheControl: 'max-age=1234, public',
+          expires: '2010'
+        };
+
+        var promises = subject.upload(options);
+
+        return assert.isFulfilled(promises)
+          .then(function () {
+            assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
+            assert.equal(s3Params.Key, 'js-app/app.css.br');
+            assert.equal(s3Params.ContentEncoding, 'br');
+            assert.equal(s3Params.CacheControl, 'max-age=1234, public');
+            assert.equal(s3Params.Expires, '2010');
+          });
+      });
+
       it('sets the content type using defaultMimeType', function() {
         var s3Params;
         s3Client.putObject = function(params, cb) {
