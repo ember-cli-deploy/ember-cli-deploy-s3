@@ -34,6 +34,9 @@ module.exports = {
         gzippedFiles: function(context) {
           return context.gzippedFiles || []; // e.g. from ember-cli-deploy-gzip
         },
+        brotliCompressedFiles: function(context) {
+          return context.brotliCompressedFiles || []; // e.g. from ember-cli-deploy-gzip
+        },
         manifestPath: function(context) {
           return context.manifestPath; // e.g. from ember-cli-deploy-manifest
         },
@@ -53,6 +56,7 @@ module.exports = {
         var distDir               = this.readConfig('distDir');
         var distFiles             = this.readConfig('distFiles');
         var gzippedFiles          = this.readConfig('gzippedFiles');
+        var brotliCompressedFiles = this.readConfig('brotliCompressedFiles');
         var bucket                = this.readConfig('bucket');
         var acl                   = this.readConfig('acl');
         var prefix                = this.readConfig('prefix');
@@ -74,6 +78,7 @@ module.exports = {
           cwd: distDir,
           filePaths: filesToUpload,
           gzippedFilePaths: gzippedFiles,
+          brotliCompressedFilePaths: brotliCompressedFiles,
           prefix: prefix,
           bucket: bucket,
           acl: acl,
