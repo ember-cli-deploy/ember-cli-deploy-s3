@@ -22,7 +22,7 @@
     "core-object": "^2.0.0",
     "ember-cli-deploy-plugin": "^0.2.2",
     "lodash": "^4.17.4",
-    "mime": "2.3.1",
+    "mime": "^2.3.1",
     "minimatch": "^3.0.3",
     "proxy-agent": "^2.0.0",
     "rsvp": "^3.5.0"
