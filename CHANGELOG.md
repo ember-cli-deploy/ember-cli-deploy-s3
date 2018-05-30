@@ -1,7 +1,14 @@
 # Change Log
 
-## [1.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.2.0) (2018-02-05)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.1.0...1.2.0)
+## [1.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.3.0) (2018-05-30)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.2.0...1.3.0)
+
+**Merged pull requests:**
+
+- update mime dependency to 2.x in order to support newer filetypes like wasm \#105 [\#107](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/107) ([jenweber](https://github.com/jenweber))
+
+## [v1.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.2.0) (2018-02-05)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.1.0...v1.2.0)
 
 **Merged pull requests:**
 
