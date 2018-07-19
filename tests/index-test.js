@@ -57,6 +57,9 @@ describe('s3 plugin', function() {
           gzippedFiles: function(context) {
             return context.gzippedFiles || []; // e.g. from ember-cli-deploy-gzip
           },
+          brotliCompressedFiles: function(context) {
+            return context.brotliCompressedFiles || []; // e.g. from ember-cli-deploy-gzip
+          },
           manifestPath: function(context) {
             return context.manifestPath; // e.g. from ember-cli-deploy-manifest
           },
@@ -235,6 +238,39 @@ describe('s3 plugin', function() {
         });
     });
 
+    it('filters out ignored files via fileIgnorePattern', function() {
+      var plugin = subject.createDeployPlugin({
+        name: 's3'
+      });
+
+      context.config.s3.fileIgnorePattern = '*.css';
+      context.gzippedFiles = ['app.css', 'app.js'];
+      context.brotliCompressedFiles = ['app.css', 'app.js'];
+      context.config.s3.fileIgnorePattern = '*.css';
+      context.uploadClient.upload = function(options) {
+        assert.equal(options.filePaths.length, 1, 'file paths are filtered');
+        assert.equal(options.gzippedFilePaths.length, 1, 'gzipped file paths are filtered');
+        assert.equal(options.brotliCompressedFilePaths.length, 1, 'brotli compressed file paths are filtered');
+        return RSVP.resolve(options.filePaths);
+      };
+      plugin.beforeHook(context);
+
+      return assert.isFulfilled(plugin.upload(context))
+        .then(function() {
+          assert.equal(mockUi.messages.length, 2);
+
+          var messages = mockUi.messages.reduce(function(previous, current) {
+            if (/- uploaded 1 files ok/.test(current)) {
+              previous.push(current);
+            }
+
+            return previous;
+          }, []);
+
+          assert.equal(messages.length, 1);
+        });
+    });
+
     it('prints an error message if the upload errors', function() {
       var plugin = subject.createDeployPlugin({
         name: 's3'
@@ -259,7 +295,7 @@ describe('s3 plugin', function() {
         name: 's3'
       });
 
-      var assertionCount = 0
+      var assertionCount = 0;
       context.proxyAgent = function(/* proxy */) {
         assertionCount++;
       };
@@ -272,7 +308,7 @@ describe('s3 plugin', function() {
       });
     });
 
-    it('sets the appropriate header if the file is inclued in gzippedFiles list', function(done) {
+    it('sets the appropriate header if the file is included in gzippedFiles list', function(done) {
       var plugin = subject.createDeployPlugin({
         name: 's3'
       });
