@@ -122,6 +122,12 @@ Files that match this pattern will be uploaded to S3. The file pattern must be r
 
 *Default:* '\*\*/\*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm}'
 
+### fileIgnorePattern
+
+Files matching this pattern will _not_ be uploaded even if they match filePattern.
+
+*Default:* `null`
+
 ### distDir
 
 The root directory where the files matching `filePattern` will be searched for. By default, this option will use the `distDir` property of the deployment context, provided by [ember-cli-deploy-build][2].

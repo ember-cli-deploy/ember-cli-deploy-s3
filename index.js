@@ -17,6 +17,7 @@ module.exports = {
       name: options.name,
       defaultConfig: {
         filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm}',
+        fileIgnorePattern: null,
         prefix: '',
         profile: '',
         acl: 'public-read',
@@ -53,6 +54,7 @@ module.exports = {
         var self                  = this;
 
         var filePattern           = this.readConfig('filePattern');
+        var fileIgnorePattern     = this.readConfig('fileIgnorePattern');
         var distDir               = this.readConfig('distDir');
         var distFiles             = this.readConfig('distFiles');
         var gzippedFiles          = this.readConfig('gzippedFiles');
@@ -69,6 +71,17 @@ module.exports = {
         var defaultMimeType       = this.readConfig('defaultMimeType');
 
         var filesToUpload = distFiles.filter(minimatch.filter(filePattern, { matchBase: true, dot: dotFolders }));
+        if (fileIgnorePattern) {
+          filesToUpload = filesToUpload.filter(function(path) {
+            return !minimatch(path, fileIgnorePattern, { matchBase: true });
+          });
+          gzippedFiles = gzippedFiles.filter(function(path) {
+            return !minimatch(path, fileIgnorePattern, { matchBase: true });
+          });
+          brotliCompressedFiles = brotliCompressedFiles.filter(function(path) {
+            return !minimatch(path, fileIgnorePattern, { matchBase: true });
+          });
+        }
 
         var s3 = this.readConfig('uploadClient') || new S3({
           plugin: this

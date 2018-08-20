@@ -1,4 +1,5 @@
 /*eslint-env node*/
+var os = require('os');
 var chai  = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
@@ -112,7 +113,7 @@ describe('s3', function() {
           .then(function() {
             assert.equal(s3Params.Bucket, 'some-bucket');
             assert.equal(s3Params.ACL, 'public-read');
-            assert.equal(s3Params.Body.toString(), 'body: {}\n');
+            assert.equal(s3Params.Body.toString(), 'body: {}' + os.EOL);
             assert.equal(s3Params.ContentType, 'text/css; charset=utf-8');
             assert.equal(s3Params.Key, 'js-app/app.css');
             assert.equal(s3Params.CacheControl, 'max-age=1234, public');
