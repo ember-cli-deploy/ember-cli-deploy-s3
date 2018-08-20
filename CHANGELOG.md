@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.4.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.4.0) (2018-08-20)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.3.0...1.4.0)
+
+**Merged pull requests:**
+
+- Add fileIgnorePattern option \#109 [#109](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/109) ([@Cropster](https://github.com/Cropster))
+
 ## [1.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.3.0) (2018-05-30)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.2.0...1.3.0)
 
