@@ -118,9 +118,9 @@ A directory within the `bucket` that the files should be uploaded in to. It shou
 
 ### filePattern
 
-Files that match this pattern will be uploaded to S3. The file pattern must be relative to `distDir`.
+Files that match this pattern will be uploaded to S3. The file pattern must be relative to `distDir`. For an advanced usage, you may want to check out [isaacs/minimatch](https://github.com/isaacs/minimatch#usage)'s documentation.
 
-*Default:* '\*\*/\*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm}'
+*Default:* `'**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm}'`
 
 ### fileIgnorePattern
 
