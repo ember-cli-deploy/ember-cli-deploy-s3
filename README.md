@@ -104,6 +104,15 @@ The region the AWS `bucket` is located in.
 
 *Default:* `undefined`
 
+### endpoint
+
+AWS (or AWS compatible endpoint) to use. E.g. with DigitalOcean Spaces, Microsoft Azure Blob Storage,
+or Openstack Swift
+
+If `endpoint` set the `region` option will be ignored.
+
+*Default:* `[region].s3.amazonaws.com` 
+
 ### acl
 
 The ACL to apply to the objects.
