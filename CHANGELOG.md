@@ -1,20 +1,41 @@
-# Change Log
+# Changelog
 
-## [1.4.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.4.0) (2018-08-20)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.3.0...1.4.0)
+## [2.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/2.0.0) (2020-05-15)
+
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.4.0...2.0.0)
 
 **Merged pull requests:**
 
-- Add fileIgnorePattern option \#109 [#109](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/109) ([@Cropster](https://github.com/Cropster))
+- Update test dependencies [\#122](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/122) ([lukemelia](https://github.com/lukemelia))
+- Bump js-yaml from 3.8.2 to 3.13.1 [\#121](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/121) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump eslint from 3.19.0 to 4.18.2 [\#120](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/120) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update dependencies and move to release-it [\#119](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/119) ([lukemelia](https://github.com/lukemelia))
+- Bump handlebars from 4.0.6 to 4.7.6 [\#118](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/118) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump lodash.merge from 4.6.0 to 4.6.2 [\#117](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/117) ([dependabot[bot]](https://github.com/apps/dependabot))
+- \[BREAKING\] Use node 10, lowest current node LTS [\#116](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/116) ([lukemelia](https://github.com/lukemelia))
+- \[DOC\] `filePattern`: add link to minimatch [\#112](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/112) ([dcyriller](https://github.com/dcyriller))
+- Added the ability to specify the AWS endpoint [\#111](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/111) ([tbartelmess](https://github.com/tbartelmess))
+- contentType handled properly [\#106](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/106) ([prem-chandar](https://github.com/prem-chandar))
+- Updated bucket policy based on latest AWS recommendations [\#100](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/100) ([peavers](https://github.com/peavers))
 
-## [1.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/1.3.0) (2018-05-30)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.2.0...1.3.0)
+## [v1.4.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.4.0) (2018-08-20)
+
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.3.0...v1.4.0)
+
+**Merged pull requests:**
+
+- Add fileIgnorePattern option [\#109](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/109) ([mydea](https://github.com/mydea))
+
+## [v1.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.3.0) (2018-05-30)
+
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.2.0...v1.3.0)
 
 **Merged pull requests:**
 
 - update mime dependency to 2.x in order to support newer filetypes like wasm \#105 [\#107](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/107) ([jenweber](https://github.com/jenweber))
 
 ## [v1.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.2.0) (2018-02-05)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.1.0...v1.2.0)
 
 **Merged pull requests:**
@@ -24,6 +45,7 @@
 - \[DOC\] remove trailing comma [\#98](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/98) ([fivetanley](https://github.com/fivetanley))
 
 ## [v1.1.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.1.0) (2017-05-31)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0...v1.1.0)
 
 **Merged pull requests:**
@@ -32,9 +54,11 @@
 - DOC - formatting updates to README [\#91](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/91) ([et](https://github.com/et))
 
 ## [v1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0) (2017-04-06)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.0.0-beta.0...v1.0.0)
 
 ## [v1.0.0-beta.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v1.0.0-beta.0) (2017-03-25)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.4.0...v1.0.0-beta.0)
 
 **Merged pull requests:**
@@ -52,6 +76,7 @@
 - \[Bugfix\] Remove the Principal Policy [\#65](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/65) ([Jaspaul](https://github.com/Jaspaul))
 
 ## [v0.4.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.4.0) (2016-11-02)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.2...v0.4.0)
 
 **Merged pull requests:**
@@ -62,6 +87,7 @@
 - filesUploaded should return all files when using manifest [\#67](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/67) ([wongpeiyi](https://github.com/wongpeiyi))
 
 ## [v0.3.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.3.2) (2016-09-13)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.1...v0.3.2)
 
 **Merged pull requests:**
@@ -73,16 +99,21 @@
 - Add network proxy option [\#61](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/61) ([v-shan](https://github.com/v-shan))
 
 ## [v0.3.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.3.1) (2016-06-16)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.3.0...v0.3.1)
+
+**Fixed bugs:**
+
+- Fix issue \#54: manifest.txt should be uploaded as last [\#55](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/55) ([YoranBrondsema](https://github.com/YoranBrondsema))
 
 **Merged pull requests:**
 
 - fix \#59 [\#60](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/60) ([ghedamat](https://github.com/ghedamat))
 - Update minimum S3 permissions [\#58](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/58) ([jeffreybiles](https://github.com/jeffreybiles))
 - Includes session token if provided to client initialization. [\#57](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/57) ([RickCSong](https://github.com/RickCSong))
-- Fix issue \#54: manifest.txt should be uploaded as last [\#55](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/55) ([YoranBrondsema](https://github.com/YoranBrondsema))
 
 ## [v0.3.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.3.0) (2016-04-19)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.2...v0.3.0)
 
 **Merged pull requests:**
@@ -90,6 +121,7 @@
 - Configure Cache-Control and Expires headers on the uploaded files. [\#53](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/53) ([YoranBrondsema](https://github.com/YoranBrondsema))
 
 ## [v0.2.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.2.2) (2016-04-01)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.1...v0.2.2)
 
 **Merged pull requests:**
@@ -97,6 +129,7 @@
 - Set the correct content type for gzipped files with the .gz ext [\#51](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/51) ([dannyfallon](https://github.com/dannyfallon))
 
 ## [v0.2.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.2.1) (2016-02-06)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.2.0...v0.2.1)
 
 **Merged pull requests:**
@@ -105,6 +138,7 @@
 - Fix AWS Credential Resolution link in README [\#43](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/43) ([reidab](https://github.com/reidab))
 
 ## [v0.2.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.2.0) (2015-12-15)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.1.0...v0.2.0)
 
 **Merged pull requests:**
@@ -122,6 +156,7 @@
 - Add support for ACL on objects [\#20](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/20) ([flecno](https://github.com/flecno))
 
 ## [v0.1.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.1.0) (2015-10-25)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.1.0-beta.2...v0.1.0)
 
 **Merged pull requests:**
@@ -131,6 +166,7 @@
 - add swf to default filePattern [\#15](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/15) ([jasonkriss](https://github.com/jasonkriss))
 
 ## [v0.1.0-beta.2](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.1.0-beta.2) (2015-09-14)
+
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v0.1.0-beta.1...v0.1.0-beta.2)
 
 **Merged pull requests:**
@@ -140,6 +176,9 @@
 - Add content encoding to ContentType for text files [\#11](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/11) ([achambers](https://github.com/achambers))
 
 ## [v0.1.0-beta.1](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/v0.1.0-beta.1) (2015-08-08)
+
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/0b3622bd5b5facc24810dc2ac50b7de48eed7116...v0.1.0-beta.1)
+
 **Merged pull requests:**
 
 - Updated README for 0.5.0 [\#10](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/10) ([achambers](https://github.com/achambers))
@@ -153,4 +192,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
