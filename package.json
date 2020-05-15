@@ -19,7 +19,7 @@
   "dependencies": {
     "aws-sdk": "^2.6.12",
     "chalk": "^1.0.0",
-    "core-object": "^2.0.0",
+    "core-object": "^3.1.5",
     "ember-cli-deploy-plugin": "^0.2.2",
     "lodash": "^4.17.4",
     "mime": "^2.3.1",
@@ -30,13 +30,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "ember-cli": "^2.18.0",
-    "ember-cli-release": "^1.0.0-beta.2",
+    "ember-cli": "^3.18.0",
     "eslint": "^3.18.0",
     "github": "^0.2.4",
     "glob": "^7.1.1",
     "mocha": "^3.2.0",
-    "multiline": "^1.0.2"
+    "multiline": "^1.0.2",
+    "release-it": "*"
   },
   "engines": {
     "node": ">= 10.*"
