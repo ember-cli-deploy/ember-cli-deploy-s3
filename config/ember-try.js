@@ -1,14 +1,41 @@
-/*jshint node:true*/
-module.exports = {
-  scenarios: [
-    {
-      name: 'ember-lts-2.4',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#lts-2-4'
-        },
-        resolutions: {
-          'ember': 'lts-2-4'
+'use strict';
+
+const getChannelURL = require('ember-source-channel-url');
+
+module.exports = async function() {
+  return {
+    useYarn: true,
+    scenarios: [
+      {
+        name: 'ember-lts-3.16',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.16.0'
+          }
+        }
+      },
+      {
+        name: 'ember-lts-3.20',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.20.5'
+          }
+        }
+      },
+      {
+        name: 'ember-release',
+        npm: {
+          devDependencies: {
+            'ember-source': await getChannelURL('release')
+          }
+        }
+      },
+      {
+        name: 'ember-beta',
+        npm: {
+          devDependencies: {
+            'ember-source': await getChannelURL('beta')
+          }
         }
       }
     },
@@ -21,27 +48,18 @@ module.exports = {
         resolutions: {
           'ember': 'lts-2-8'
         }
-      }
-    },
-    {
-      name: 'ember-release',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#release'
+      },
+      {
+        name: 'ember-default-with-jquery',
+        env: {
+          EMBER_OPTIONAL_FEATURES: JSON.stringify({
+            'jquery-integration': true
+          })
         },
-        resolutions: {
-          'ember': 'release'
-        }
-      }
-    },
-    {
-      name: 'ember-beta',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#beta'
-        },
-        resolutions: {
-          'ember': 'beta'
+        npm: {
+          devDependencies: {
+            '@ember/jquery': '^1.1.0'
+          }
         }
       }
     },
