@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.0 (2020-11-24)
+
+#### :rocket: Enhancement
+* [#128](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/128) Add .json to default `filePattern` ([@simonihmig](https://github.com/simonihmig))
+
+#### :house: Internal
+* [#131](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/131) Update dependencies ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 2
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## [2.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/tree/2.0.0) (2020-05-15)
 
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/compare/v1.4.0...2.0.0)
