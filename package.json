@@ -18,26 +18,27 @@
     "test": "node tests/runner.js && ./node_modules/.bin/eslint index.js lib/* tests/**/*-test.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.6.12",
-    "chalk": "^1.0.0",
+    "aws-sdk": "^2.798.0",
+    "chalk": "^4.1.0",
     "core-object": "^3.1.5",
     "ember-cli-deploy-plugin": "^0.2.2",
-    "lodash": "^4.17.4",
-    "mime": "^2.3.1",
+    "lodash": "^4.17.20",
+    "mime": "^2.4.6",
     "minimatch": "^3.0.3",
-    "proxy-agent": "^2.0.0",
-    "rsvp": "^3.5.0"
+    "proxy-agent": "^4.0.0",
+    "rsvp": "^4.8.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "ember-cli": "^3.18.0",
-    "eslint": "^4.18.2",
-    "github": "^0.2.4",
+    "ember-cli": "^3.22.0",
+    "eslint": "^7.14.0",
+    "github": "^14.0.0",
     "glob": "^7.1.1",
-    "mocha": "^7.1.2",
-    "multiline": "^1.0.2",
-    "release-it": "*"
+    "mocha": "^8.2.1",
+    "multiline": "^2.0.0",
+    "release-it": "14.2.1",
+    "release-it-lerna-changelog": "^2.3.0"
   },
   "engines": {
     "node": ">= 10.*"
@@ -46,6 +47,12 @@
     "before": "ember-cli-deploy-redis"
   },
   "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": false
+      }
+    },
     "git": {
       "requireCleanWorkingDir": false
     },
