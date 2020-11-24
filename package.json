@@ -37,7 +37,8 @@
     "glob": "^7.1.1",
     "mocha": "^8.2.1",
     "multiline": "^2.0.0",
-    "release-it": "14.2.1"
+    "release-it": "14.2.1",
+    "release-it-lerna-changelog": "^2.3.0"
   },
   "engines": {
     "node": ">= 10.*"
@@ -46,6 +47,12 @@
     "before": "ember-cli-deploy-redis"
   },
   "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": false
+      }
+    },
     "git": {
       "requireCleanWorkingDir": false
     },
