@@ -61,7 +61,7 @@ For detailed information on how configuration of plugins works, please refer to 
 
 <hr/>
 
-**WARNING:** Don't share a configuration object between [ember-cli-deploy-s3-index](https://github.com/ember-cli-deploy/ember-cli-deploy-s3-index) and this plugin. The way these two plugins read their configuration has sideeffects which will unfortunately break your deploy if you share one configuration object between the two (we are already working on a fix)
+**WARNING:** Don't share a configuration object between [ember-cli-deploy-s3-index](https://github.com/ember-cli-deploy/ember-cli-deploy-s3-index) and this plugin. The way these two plugins read their configuration has side effects which will unfortunately break your deploy if you share one configuration object between the two.
 
 <hr/>
 
@@ -292,7 +292,7 @@ If you want the contents of the S3 bucket to be accessible to the world, the fol
             "Effect": "Allow",
             "Principal": "*",
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::bucket-name/*"
+            "Resource": "arn:aws:s3:::your-s3-bucket-name/*"
         }
     ]
 }
@@ -304,19 +304,24 @@ Replace `your-s3-bucket-name` with the name of the actual bucket you are deployi
 
 To properly serve certain assets (i.e. webfonts) a basic CORS configuration is needed
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <CORSRule>
-    <AllowedOrigin>http://www.your-site.com</AllowedOrigin>
-    <AllowedOrigin>https://www.your-site.com</AllowedOrigin>
-    <AllowedMethod>GET</AllowedMethod>
-    <AllowedMethod>HEAD</AllowedMethod>
-  </CORSRule>
-</CORSConfiguration>
+```json
+[
+    {
+        "AllowedHeaders": [],
+        "AllowedMethods": [
+            "GET",
+            "HEAD"
+        ],
+        "AllowedOrigins": [
+            "http://www.your-site.com",
+            "https://www.your-site.com"
+        ],
+        "ExposeHeaders": []
+    }
+]
 ```
 
-Replace **http://www.your-site.com** with your domain.
+Replace **www.your-site.com** with your domain.
 
 Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 
