@@ -1,5 +1,34 @@
 # Changelog
 
+## 3.1.0 (2022-01-19)
+
+#### :rocket: Enhancement
+* [#150](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/150) Add webp to `filePattern` ([@Aierie](https://github.com/Aierie))
+
+#### :memo: Documentation
+* [#137](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/137) Update CORS example to use JSON ([@lukemelia](https://github.com/lukemelia))
+
+#### :house: Internal
+* [#146](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/146) Bump path-parse from 1.0.6 to 1.0.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#153](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/153) Bump forwarded from 0.1.0 to 0.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#154](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/154) Bump y18n from 4.0.0 to 4.0.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#144](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/144) Bump glob-parent from 5.1.1 to 5.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#142](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/142) Bump browserslist from 4.16.3 to 4.16.6 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#141](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/141) Bump ssri from 7.1.0 to 7.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#140](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/140) Bump handlebars from 4.7.6 to 4.7.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#139](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/139) Bump underscore from 1.8.3 to 1.13.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#147](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/147) Bump tar from 6.0.5 to 6.1.11 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#149](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/149) Bump tmpl from 1.0.4 to 1.0.5 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#151](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/151) Bump follow-redirects from 1.13.0 to 1.14.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#152](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/152) update proxy-agent ([@timmorey](https://github.com/timmorey))
+* [#136](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/136) Update dependencies ([@lukemelia](https://github.com/lukemelia))
+* [#138](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/138) Move from travis to github actions for CI ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 3
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+- Timothy Morey ([@timmorey](https://github.com/timmorey))
+- [@Aierie](https://github.com/Aierie)
+
 ## 3.0.0 (2020-11-24)
 
 #### :rocket: Enhancement
