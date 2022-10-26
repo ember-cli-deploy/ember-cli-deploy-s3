@@ -21,7 +21,7 @@ module.exports = {
         prefix: '',
         profile: '',
         acl: 'public-read',
-        cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
+        cacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public, immutable',
         expires: EXPIRE_IN_2030,
         dotFolders: false,
         batchSize: 0,
