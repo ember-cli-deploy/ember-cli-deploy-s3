@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.0 (2022-10-27)
+
+#### :rocket: Enhancement
+* [#161](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/161) add immutable to cache control header ([@BryanCrotaz](https://github.com/BryanCrotaz))
+
+#### Committers: 1
+- Bryan ([@BryanCrotaz](https://github.com/BryanCrotaz))
+
 ## 3.1.0 (2022-01-19)
 
 #### :rocket: Enhancement
