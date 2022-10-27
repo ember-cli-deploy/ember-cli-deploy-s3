@@ -192,7 +192,7 @@ The client specified MUST implement functions called `getObject` and `putObject`
 
 Sets the `Cache-Control` header on the uploaded files.
 
-*Default:* `max-age=63072000, public`
+*Default:* `max-age=63072000, public, immutable`
 
 ### expires
 
