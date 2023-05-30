@@ -111,11 +111,13 @@ or Openstack Swift
 
 If `endpoint` set the `region` option will be ignored.
 
-*Default:* `[region].s3.amazonaws.com` 
+*Default:* `[region].s3.amazonaws.com`
 
 ### acl
 
 The ACL to apply to the objects.
+
+Set to `false` to not apply any ACLs.
 
 *Default:* `public-read`
 
