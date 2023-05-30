@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.0 (2023-05-30)
+
+#### :rocket: Enhancement
+* [#174](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/174) Optionally ignore ACLs ([@khornberg](https://github.com/khornberg))
+
+#### Committers: 2
+- Kyle Hornberg ([@khornberg](https://github.com/khornberg))
+- Prasad ([@sbonasu](https://github.com/sbonasu))
+
 ## 3.2.0 (2022-10-27)
 
 #### :rocket: Enhancement
