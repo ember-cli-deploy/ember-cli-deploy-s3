@@ -340,5 +340,22 @@ describe('s3 plugin', function() {
         done(reason);
       });
     });
+
+    it('does not add an ACL', function() {
+      context.config.s3.acl = false
+
+      var plugin = subject.createDeployPlugin({
+        name: 's3'
+      });
+
+      context.uploadClient.upload = function(options) {
+        return RSVP.resolve(options);
+      };
+      plugin.beforeHook(context);
+      return assert.isFulfilled(plugin.upload(context))
+        .then(function(options) {
+          assert.equal(options.acl, undefined, 'acl is not present');
+        });
+    });
   });
 });

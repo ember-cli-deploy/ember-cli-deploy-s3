@@ -94,13 +94,16 @@ module.exports = {
           brotliCompressedFilePaths: brotliCompressedFiles,
           prefix: prefix,
           bucket: bucket,
-          acl: acl,
           manifestPath: manifestPath,
           cacheControl: cacheControl,
           expires: expires,
           batchSize: batchSize,
           defaultMimeType: defaultMimeType
         };
+
+        if (acl) {
+          options.acl = acl;
+        }
 
         if (serverSideEncryption) {
           options.serverSideEncryption = serverSideEncryption;
