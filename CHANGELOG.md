@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.0 (2023-06-04)
+
+#### :boom: Breaking Change
+* [#176](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/176) [BREAKING] update dependencies and node version requirements ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 1
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## 3.3.0 (2023-05-30)
 
 #### :rocket: Enhancement
