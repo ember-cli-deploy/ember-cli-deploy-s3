@@ -21,27 +21,27 @@
     "aws-sdk": "^2.1354.0",
     "chalk": "^4.1.0",
     "core-object": "^3.1.5",
-    "ember-cli-deploy-plugin": "^0.2.2",
+    "ember-cli-deploy-plugin": "^0.2.9",
     "lodash": "^4.17.21",
-    "mime": "^2.5.2",
+    "mime": "^3.0.0",
     "minimatch": "^3.0.3",
     "proxy-agent": "^5.0.0",
     "rsvp": "^4.8.5"
   },
   "devDependencies": {
-    "chai": "^4.3.3",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
-    "ember-cli": "^3.25.2",
-    "eslint": "^7.21.0",
+    "ember-cli": "^3.28.6",
+    "eslint": "^8.42.0",
     "github": "^14.0.0",
-    "glob": "^7.1.1",
+    "glob": "^10.2.6",
     "mocha": "^8.3.1",
     "multiline": "^2.0.0",
     "release-it": "14.4.1",
     "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
-    "node": ">= 10.*"
+    "node": "14.x || 16.x || 18.x || >= 20.*"
   },
   "ember-addon": {
     "before": "ember-cli-deploy-redis"
@@ -64,7 +64,7 @@
     }
   },
   "volta": {
-    "node": "16.13.2",
+    "node": "16.20.0",
     "yarn": "1.22.17"
   }
 }

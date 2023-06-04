@@ -1,51 +1,40 @@
-name: CI
+name: Continuous Integration
 
 on:
   push:
-    branches:
-      - master
   pull_request:
-
-env:
-  NODE_VERSION: '12.x'
 
 jobs:
   test:
-    name: Tests
+    name: Test
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
     steps:
     - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
-        fetch-depth: 1
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn install
+    - run: yarn test
 
-    - uses: actions/setup-node@v2-beta
+  test-floating:
+    name: Floating Dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
-        node-version: '${{ env.NODE_VERSION }}'
-
-    - name: Get package manager's global cache path
-      id: global-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-
-    - name: Cache package manager's global cache and node_modules
-      id: cache-dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ steps.global-cache-dir-path.outputs.dir }}
-          node_modules
-        key: v1-${{ runner.os }}-${{ matrix.node-version }}-${{
-          hashFiles('**/yarn.lock'
-          ) }}
-        restore-keys: |
-          v1-${{ runner.os }}-${{ matrix.node-version }}-
-
-    - name: Install Dependencies
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - name: install dependencies
       run: yarn install --no-lockfile
-      if: |
-        steps.cache-dependencies.outputs.cache-hit != 'true'
-
-    - name: Test
+    - name: test
       run: yarn test
-
-
