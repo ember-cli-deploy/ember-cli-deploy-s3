@@ -1,5 +1,7 @@
 # Changelog
 
+## 4.0.1 (2023-08-01)
+
 ## 4.0.0 (2023-06-04)
 
 #### :boom: Breaking Change
