@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.2 (2024-03-23)
+
+#### :house: Internal
+* [#186](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/186) Update aws-sdk to v3 ([@gorner](https://github.com/gorner))
+
+#### Committers: 1
+- Joshua Gorner ([@gorner](https://github.com/gorner))
+
 ## 4.0.1 (2023-08-01)
 
 * Merge pull request #182 from ember-cli-deploy/dependabot/npm_and_yarn/word-wrap-1.2.5 (874872b)
