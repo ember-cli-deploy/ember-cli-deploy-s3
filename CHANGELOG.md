@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.3 (2024-03-26)
+
+#### :bug: Bug Fix
+* [#187](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/187) Fix setting of credentials via plugin config ([@owen-c](https://github.com/owen-c))
+
+#### Committers: 1
+- Owen Cummings ([@owen-c](https://github.com/owen-c))
+
 ## 4.0.2 (2024-03-23)
 
 #### :house: Internal
