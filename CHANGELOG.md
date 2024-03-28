@@ -1,30 +1,7 @@
 # Changelog
 
-## 4.0.3 (2024-03-26)
-
-#### :bug: Bug Fix
-* [#187](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/187) Fix setting of credentials via plugin config ([@owen-c](https://github.com/owen-c))
-
-#### Committers: 1
-- Owen Cummings ([@owen-c](https://github.com/owen-c))
-
-## 4.0.2 (2024-03-23)
-
-#### :house: Internal
-* [#186](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/186) Update aws-sdk to v3 ([@gorner](https://github.com/gorner))
-
-#### Committers: 1
-- Joshua Gorner ([@gorner](https://github.com/gorner))
-
 ## 4.0.1 (2023-08-01)
 
-* Merge pull request #182 from ember-cli-deploy/dependabot/npm_and_yarn/word-wrap-1.2.5 (874872b)
-* Merge pull request #178 from ember-cli-deploy/dependabot/npm_and_yarn/semver-5.7.2 (641b9a8)
-* Bump word-wrap from 1.2.3 to 1.2.5 (0bf1938)
-* Merge pull request #181 from gorner/update-proxy-agent (6d756b6)
-* Update proxy-agent to v6.3.0 to remove vm2 dep (fba8777)
-* Bump semver from 5.3.0 to 5.7.2 (dcfebf6)
-  
 ## 4.0.0 (2023-06-04)
 
 #### :boom: Breaking Change

@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-s3",
-  "version": "4.0.3",
+  "version": "4.0.1",
   "description": "An ember-cli-deploy plugin to upload to s3",
   "keywords": [
     "ember-addon",
@@ -18,8 +18,7 @@
     "test": "node tests/runner.js && ./node_modules/.bin/eslint index.js lib/* tests/**/*-test.js"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.525.0",
-    "@aws-sdk/credential-providers": "^3.525.0",
+    "aws-sdk": "^2.1354.0",
     "chalk": "^4.1.0",
     "core-object": "^3.1.5",
     "ember-cli-deploy-plugin": "^0.2.9",
