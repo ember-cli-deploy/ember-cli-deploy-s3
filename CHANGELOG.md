@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.0-beta.0 (2024-03-28)
+
+#### :boom: Breaking Change
+* [#190](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/190) Upgrade aws-sdk to v3 ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 1
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## 4.0.4 (2024-03-28)
 
 #### :bug: Bug Fix
