@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.4 (2024-03-28)
+
+#### :bug: Bug Fix
+* [#189](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/189) Revert to 4.0.1 to back out of breaking AWS SDK upgrade ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 1
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## 4.0.1 (2023-08-01)
 
 ## 4.0.0 (2023-06-04)
