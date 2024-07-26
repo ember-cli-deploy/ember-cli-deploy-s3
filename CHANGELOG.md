@@ -1,5 +1,7 @@
 # Changelog
 
+## 5.0.0 (2024-07-26)
+
 ## 5.0.0-beta.0 (2024-03-28)
 
 #### :boom: Breaking Change
