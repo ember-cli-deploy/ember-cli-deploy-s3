@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.1 (2025-02-02)
+
+#### :bug: Bug Fix
+* [#192](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/192) Provide session token to credentials ([@bobisjan](https://github.com/bobisjan))
+
+#### Committers: 1
+- Jan Bobisud ([@bobisjan](https://github.com/bobisjan))
+
 ## 5.0.0 (2024-07-26)
 
 ## 5.0.0-beta.0 (2024-03-28)
