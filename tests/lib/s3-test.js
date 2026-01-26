@@ -149,6 +149,26 @@ describe('s3', function() {
         });
       });
 
+      it('sets Metadata using metadata', function() {
+        var s3Params;
+        s3Client.putObject = function(params, cb) {
+          s3Params = params;
+          cb();
+        };
+
+        var options = {
+          filePaths: ['app.css'],
+          cwd: process.cwd() + '/tests/fixtures/dist',
+          prefix: 'js-app',
+          metadata: { 'test-key': 'test-value' }
+        };
+
+        return assert.isFulfilled(subject.upload(options))
+          .then(function() {
+            assert.deepEqual(s3Params.Metadata, { 'test-key': 'test-value' });
+          });
+      });
+
       it('sends the correct content type params for gzipped files with .gz extension', function() {
         var s3Params;
         s3Client.putObject = function(params, cb) {

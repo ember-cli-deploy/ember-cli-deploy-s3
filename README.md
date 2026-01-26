@@ -228,6 +228,13 @@ Useful when deploying applications to [fake-s3](https://github.com/jubos/fake-s3
 
 *Default:* `0`
 
+### metadata
+
+Metadata to be sent with the files. This should be an object that will be passed directly to the `Metadata` key in the `putObject` call of the AWS S3 SDK. Keys will be automatically prefixed with `x-amz-meta-` by the AWS SDK. Note that the AWS SDK treats all metadata values as strings. You should typecast your values to strings for explicit control.
+
+*Example value*: `{ 'release-id': process.env.RELEASE_ID }`
+
+*Default:* `null`
 
 ### signatureVersion
 
