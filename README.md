@@ -212,6 +212,8 @@ Sets the default mime type, used when it cannot be determined from the file exte
 
 The network proxy url used when sending requests to S3.
 
+Note: requests to plain `http://` endpoints (for example a custom `endpoint` used with a local S3-compatible server) fail when sent through a proxy, because the AWS SDK adds an `Expect: 100-continue` header to uploads and the proxy agent cannot handle it. HTTPS endpoints, including AWS S3 itself, work through the proxy.
+
 *Default:* `undefined`
 
 ### serverSideEncryption
