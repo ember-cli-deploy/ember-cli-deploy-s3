@@ -1,5 +1,7 @@
 /*eslint-env node*/
 var os = require('os');
+var http = require('http');
+var net = require('net');
 var chai  = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
@@ -42,6 +44,114 @@ describe('s3', function() {
     };
     subject = new S3({
       plugin: plugin
+    });
+  });
+
+  describe('with a proxy configured', function() {
+    // Unproxied requests to the unresolvable endpoint fail via DNS + SDK retries.
+    this.timeout(15000);
+
+    var proxyServer, proxyUrl, proxyPort, proxiedRequests, proxiedConnects, config;
+
+    function createSubject() {
+      return new S3({
+        plugin: {
+          ui: mockUi,
+          readConfig: function(propertyName) {
+            return config[propertyName];
+          },
+          log: plugin.log
+        }
+      });
+    }
+
+    function uploadOptions() {
+      return {
+        filePaths: ['app.js'],
+        cwd: process.cwd() + '/tests/fixtures/dist',
+        prefix: 'js-app',
+        bucket: 'test-bucket'
+      };
+    }
+
+    before(function(done) {
+      proxyServer = http.createServer(function(req, res) {
+        proxiedRequests.push({ method: req.method, url: req.url, host: req.headers.host });
+        req.resume();
+        req.on('end', function() {
+          res.writeHead(200, { 'Content-Length': 0, 'ETag': '"proxied"' });
+          res.end();
+        });
+      });
+      // HTTPS requests are tunnelled via CONNECT; record the tunnel target and refuse it.
+      proxyServer.on('connect', function(req, socket) {
+        proxiedConnects.push(req.url);
+        socket.end('HTTP/1.1 502 Bad Gateway\r\nContent-Length: 0\r\n\r\n');
+      });
+      proxyServer.listen(0, '127.0.0.1', function() {
+        proxyPort = proxyServer.address().port;
+        proxyUrl = 'http://127.0.0.1:' + proxyPort;
+        done();
+      });
+    });
+
+    after(function(done) {
+      proxyServer.close(done);
+    });
+
+    beforeEach(function() {
+      proxiedRequests = [];
+      proxiedConnects = [];
+      config = {
+        region: 'us-east-1',
+        accessKeyId: 'AKIDEXAMPLE',
+        secretAccessKey: 'secret',
+        endpoint: 'http://s3.test.invalid',
+        proxy: proxyUrl
+      };
+    });
+
+    it('tunnels S3 requests through the configured proxy', function() {
+      config.endpoint = 'https://s3.test.invalid';
+
+      return assert.isRejected(createSubject().upload(uploadOptions()))
+        .then(function() {
+          assert.isAbove(proxiedConnects.length, 0);
+          assert.equal(proxiedConnects[0], 'test-bucket.s3.test.invalid:443');
+        });
+    });
+
+    it('sends S3 requests through the agent returned by a custom proxyAgent', function() {
+      var proxyAgentArgs = [];
+      config.proxyAgent = function(proxy) {
+        proxyAgentArgs.push(proxy);
+        var agent = new http.Agent();
+        agent.createConnection = function() {
+          return net.connect(proxyPort, '127.0.0.1');
+        };
+        return agent;
+      };
+
+      return createSubject().upload(uploadOptions())
+        .then(function(filesUploaded) {
+          assert.deepEqual(proxyAgentArgs, [proxyUrl]);
+          assert.deepEqual(filesUploaded, ['app.js']);
+          assert.equal(proxiedRequests.length, 1);
+          assert.equal(proxiedRequests[0].method, 'PUT');
+          assert.equal(proxiedRequests[0].host, 'test-bucket.s3.test.invalid');
+        });
+    });
+
+    it('does not use a proxy agent when no proxy is configured', function() {
+      var proxyAgentCalled = false;
+      config.proxy = undefined;
+      config.proxyAgent = function() {
+        proxyAgentCalled = true;
+      };
+
+      createSubject();
+
+      assert.isFalse(proxyAgentCalled);
     });
   });
 
