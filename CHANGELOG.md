@@ -1,5 +1,20 @@
 # Changelog
 
+## 5.1.0 (2026-10-27)
+
+#### :boom: Breaking Change
+* [#196](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/196) Update CI: drop EOL Node versions, bump actions ([@lukemelia](https://github.com/lukemelia))
+
+#### :rocket: Enhancement
+* [#195](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/195) add support for metadata passthru ([@apellerano-pw](https://github.com/apellerano-pw))
+
+#### :memo: Documentation
+* [#194](https://github.com/ember-cli-deploy/ember-cli-deploy-s3/pull/194) Add contributing guide & corepack support ([@apellerano-pw](https://github.com/apellerano-pw))
+
+#### Committers: 2
+- Andrew Pellerano ([@apellerano-pw](https://github.com/apellerano-pw))
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## 5.0.1 (2025-02-02)
 
 #### :bug: Bug Fix
