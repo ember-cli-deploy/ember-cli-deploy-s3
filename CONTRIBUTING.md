@@ -13,14 +13,14 @@ To get started with development, please follow these steps:
    ```
 3. **Install dependencies** by running:
    ```bash
-   yarn
+   pnpm install
    ```
 
 ## Running Tests
 
 To run the tests for this project, you can use:
 ```bash
-yarn test
+pnpm test
 ```
 
 ## Submitting Pull Requests

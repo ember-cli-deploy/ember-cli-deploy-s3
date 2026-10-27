@@ -13,13 +13,14 @@ jobs:
         node-version: [20.x, 22.x]
     steps:
     - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v6
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: yarn install
-    - run: yarn test
+        cache: 'pnpm'
+    - run: pnpm install --frozen-lockfile
+    - run: pnpm test
 
   test-floating:
     name: Floating Dependencies
@@ -29,12 +30,13 @@ jobs:
         node-version: [20.x, 22.x]
     steps:
     - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v6
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'pnpm'
     - name: install dependencies
-      run: yarn install --no-lockfile
+      run: pnpm install --no-lockfile
     - name: test
-      run: yarn test
+      run: pnpm test

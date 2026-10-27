@@ -339,7 +339,7 @@ Some more info: [Amazon CORS guide][7], [Stackoverflow][8]
 
 ## Tests
 
-* `yarn test`
+* `pnpm test`
 
 ## Why `ember build` and `ember test` don't work
 
