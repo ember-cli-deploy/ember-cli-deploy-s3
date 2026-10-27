@@ -30,6 +30,7 @@
     "rsvp": "^4.8.5"
   },
   "devDependencies": {
+    "@release-it-plugins/lerna-changelog": "^9.0.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "ember-cli": "^3.28.6",
@@ -38,8 +39,7 @@
     "glob": "^10.2.6",
     "mocha": "^8.3.1",
     "multiline": "^2.0.0",
-    "release-it": "14.4.1",
-    "release-it-lerna-changelog": "^3.1.0"
+    "release-it": "^20.2.1"
   },
   "engines": {
     "node": "14.x || 16.x || 18.x || >= 20.*"
@@ -52,7 +52,7 @@
   },
   "release-it": {
     "plugins": {
-      "release-it-lerna-changelog": {
+      "@release-it-plugins/lerna-changelog": {
         "infile": "CHANGELOG.md",
         "launchEditor": false
       }
